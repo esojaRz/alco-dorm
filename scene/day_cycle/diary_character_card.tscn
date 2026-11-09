@@ -1,0 +1,170 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/day_cycle/diary_character_card.gd" id="1_card"]
+[ext_resource type="FontFile" uid="uid://gnb370px8rl2" path="res://font/ctclovebernardmtcondensed.otf" id="2_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.976471, 0.933333, 0.819608, 0.72)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.49, 0.396078, 0.262745, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.819608, 0.768627, 0.666667, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hunger"]
+bg_color = Color(0.85, 0.55, 0.2, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_thirst"]
+bg_color = Color(0.3, 0.55, 0.8, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health"]
+bg_color = Color(0.4, 0.65, 0.3, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="DiaryCharacterCard" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 178)
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+script = ExtResource("1_card")
+character_id = "artur"
+
+[node name="HBox" type="HBoxContainer" parent="."]
+theme_override_constants/separation = 8
+
+[node name="Portrait" type="TextureRect" parent="HBox"]
+custom_minimum_size = Vector2(64, 64)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Info" type="VBoxContainer" parent="HBox"]
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="Top" type="HBoxContainer" parent="HBox/Info"]
+theme_override_constants/separation = 8
+
+[node name="Name" type="Label" parent="HBox/Info/Top"]
+theme_override_colors/font_color = Color(0.156863, 0.109804, 0.0588235, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "Имя"
+
+[node name="Status" type="Label" parent="HBox/Info/Top"]
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.45, 0.2, 0.12, 1)
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 2
+
+[node name="Stats" type="HBoxContainer" parent="HBox/Info"]
+theme_override_constants/separation = 8
+
+[node name="Hunger" type="VBoxContainer" parent="HBox/Info/Stats"]
+custom_minimum_size = Vector2(86, 0)
+theme_override_constants/separation = 1
+
+[node name="Value" type="Label" parent="HBox/Info/Stats/Hunger"]
+theme_override_colors/font_color = Color(0.25, 0.18, 0.1, 1)
+theme_override_font_sizes/font_size = 10
+text = "Голод 70"
+
+[node name="Bar" type="ProgressBar" parent="HBox/Info/Stats/Hunger"]
+custom_minimum_size = Vector2(86, 8)
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hunger")
+max_value = 100.0
+value = 70.0
+show_percentage = false
+
+[node name="Thirst" type="VBoxContainer" parent="HBox/Info/Stats"]
+custom_minimum_size = Vector2(86, 0)
+theme_override_constants/separation = 1
+
+[node name="Value" type="Label" parent="HBox/Info/Stats/Thirst"]
+theme_override_colors/font_color = Color(0.25, 0.18, 0.1, 1)
+theme_override_font_sizes/font_size = 10
+text = "Жажда 70"
+
+[node name="Bar" type="ProgressBar" parent="HBox/Info/Stats/Thirst"]
+custom_minimum_size = Vector2(86, 8)
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_thirst")
+max_value = 100.0
+value = 70.0
+show_percentage = false
+
+[node name="Health" type="VBoxContainer" parent="HBox/Info/Stats"]
+custom_minimum_size = Vector2(86, 0)
+theme_override_constants/separation = 1
+
+[node name="Value" type="Label" parent="HBox/Info/Stats/Health"]
+theme_override_colors/font_color = Color(0.25, 0.18, 0.1, 1)
+theme_override_font_sizes/font_size = 10
+text = "Здоровье 100"
+
+[node name="Bar" type="ProgressBar" parent="HBox/Info/Stats/Health"]
+custom_minimum_size = Vector2(86, 8)
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_health")
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="Bio" type="Label" parent="HBox/Info"]
+custom_minimum_size = Vector2(0, 38)
+theme_override_colors/font_color = Color(0.219608, 0.160784, 0.0980392, 1)
+theme_override_font_sizes/font_size = 12
+text = "Описание персонажа."
+autowrap_mode = 3
+
+[node name="Actions" type="HBoxContainer" parent="HBox/Info"]
+visible = false
+theme_override_constants/separation = 6
+
+[node name="Food" type="Button" parent="HBox/Info/Actions"]
+theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.4, 0.25, 0.1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.45, 0.4, 0.5)
+theme_override_font_sizes/font_size = 12
+text = "Еда (0)"
+flat = true
+
+[node name="Water" type="Button" parent="HBox/Info/Actions"]
+theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.4, 0.25, 0.1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.45, 0.4, 0.5)
+theme_override_font_sizes/font_size = 12
+text = "Вода (0)"
+flat = true
+
+[node name="Medicine" type="Button" parent="HBox/Info/Actions"]
+theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.4, 0.25, 0.1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.45, 0.4, 0.5)
+theme_override_font_sizes/font_size = 12
+text = "Лечение (0)"
+flat = true

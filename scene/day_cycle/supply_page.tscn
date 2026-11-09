@@ -1,0 +1,648 @@
+[gd_scene format=3 uid="uid://b08r8awatki2u"]
+
+[ext_resource type="Script" uid="uid://d24keydip8muk" path="res://scripts/day_cycle/supply_page.gd" id="1_supply"]
+[ext_resource type="Texture2D" uid="uid://0nj0jbq2ikwc" path="res://assets/props/anim_book/book_details/Green_Pill.png" id="2_dg6cl"]
+[ext_resource type="FontFile" uid="uid://gnb370px8rl2" path="res://font/ctclovebernardmtcondensed.otf" id="2_font"]
+[ext_resource type="Texture2D" uid="uid://4volpjf2lrwd" path="res://assets/props/anim_book/Слой 1.png" id="2_u31vn"]
+[ext_resource type="Texture2D" uid="uid://ds66hqpuxj0qk" path="res://assets/props/doshik.png" id="3_food"]
+[ext_resource type="Texture2D" uid="uid://ddbgurbpebmwh" path="res://assets/Card.png" id="3_tvgj1"]
+[ext_resource type="Texture2D" uid="uid://cqshrr2oy1btn" path="res://characters/portrait/artur_p.png" id="4_24rcm"]
+[ext_resource type="Texture2D" uid="uid://1e6lgejgorbw" path="res://assets/props/anim_book/book_details/Sigarets.png" id="4_f8bhk"]
+[ext_resource type="Texture2D" uid="uid://cdste78huehyr" path="res://assets/props/energy.png" id="4_water"]
+[ext_resource type="Texture2D" uid="uid://bt1bnffo6lnjk" path="res://assets/props/anim_book/book_details/Pills.png" id="5_aqrfe"]
+[ext_resource type="Texture2D" uid="uid://17de0p2pbw1i" path="res://assets/props/anim_book/book_details/Clip.png" id="5_jht1t"]
+[ext_resource type="Texture2D" uid="uid://caclik6re4m6o" path="res://assets/props/cigarete.png" id="5_med"]
+[ext_resource type="Texture2D" uid="uid://dxbruvf0vyxar" path="res://assets/icon/card_select.png" id="6_iwth8"]
+[ext_resource type="Texture2D" uid="uid://dsl3pbyrwwt8" path="res://assets/props/anim_book/book_details/Red_Pill.png" id="6_p86k2"]
+[ext_resource type="Texture2D" uid="uid://bqa8bvd451cta" path="res://assets/props/anim_book/book_details/Scrap_left.png" id="7_rk7he"]
+[ext_resource type="Texture2D" uid="uid://c633vpyipky63" path="res://assets/props/anim_book/book_details/Scrap_right.png" id="8_1jstu"]
+[ext_resource type="Texture2D" uid="uid://dnyq0pbth8o8x" path="res://characters/portrait/vasek_p.png" id="8_55864"]
+[ext_resource type="Texture2D" uid="uid://y8py6srex2i3" path="res://assets/props/anim_book/book_details/Stains.png" id="9_f8bhk"]
+[ext_resource type="Texture2D" uid="uid://p201ynkssdw4" path="res://characters/portrait/kirya_p.png" id="9_iwth8"]
+[ext_resource type="Texture2D" uid="uid://cn7mph7qcwdqc" path="res://assets/props/anim_book/book_details/jar.png" id="10_jht1t"]
+[ext_resource type="Texture2D" uid="uid://hik8afijesn1" path="res://assets/props/anim_book/book_details/Pen.png" id="12_2ifbp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gse4b"]
+texture = ExtResource("3_tvgj1")
+expand_margin_left = 14.0
+expand_margin_top = 15.0
+expand_margin_right = 14.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnuf6"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 12.0
+content_margin_bottom = 5.0
+bg_color = Color(0.9721666, 0.9729766, 0.9811117, 1)
+draw_center = false
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+
+[node name="SupplyPage" type="Control" unique_id=1484861450]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_supply")
+
+[node name="Background" type="ColorRect" parent="." unique_id=989599811]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 80.0
+offset_right = 620.0
+offset_bottom = 700.0
+color = Color(0.976471, 0.945098, 0.878431, 1)
+
+[node name="Слой1" type="Sprite2D" parent="Background" unique_id=298571025]
+position = Vector2(600, 368)
+texture = ExtResource("2_u31vn")
+
+[node name="Control" type="Control" parent="." unique_id=1612679362]
+z_index = 100
+anchors_preset = 0
+offset_left = 55.0
+offset_top = 105.0
+offset_right = 605.0
+offset_bottom = 105.0
+
+[node name="Sigarets" type="Sprite2D" parent="Control" unique_id=938973388]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+position = Vector2(237, 594)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("4_f8bhk")
+
+[node name="Clip" type="Sprite2D" parent="Control" unique_id=269076709]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+position = Vector2(450, -26.999998)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_jht1t")
+
+[node name="GreenPill" type="Sprite2D" parent="Control" unique_id=713274063]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+position = Vector2(252, 705)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_dg6cl")
+
+[node name="RedPill" type="Sprite2D" parent="Control" unique_id=990659941]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+position = Vector2(326, 580)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("6_p86k2")
+
+[node name="ScrapLeft" type="Sprite2D" parent="Control" unique_id=161803437]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+position = Vector2(30, 182)
+rotation = 0.23380697
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("7_rk7he")
+
+[node name="ScrapRight" type="Sprite2D" parent="Control" unique_id=1618314547]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+position = Vector2(3.0000153, 545.99994)
+rotation = 0.24783675
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("8_1jstu")
+
+[node name="Stains" type="Sprite2D" parent="Control" unique_id=1753933244]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+z_index = -1
+position = Vector2(226, 674.00006)
+rotation = -1.1763519
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("9_f8bhk")
+
+[node name="Pen" type="Sprite2D" parent="Control" unique_id=1373930969]
+visible = false
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+position = Vector2(463.00003, 87)
+rotation = -0.0034906585
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("12_2ifbp")
+
+[node name="Jar" type="Sprite2D" parent="Control" unique_id=218235133]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+z_index = -5
+position = Vector2(85.000015, 643)
+rotation = 0.37175512
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_jht1t")
+
+[node name="Stains2" type="Sprite2D" parent="Control" unique_id=186705512]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+z_index = -1
+position = Vector2(106, 90)
+rotation = 3.7716565
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("9_f8bhk")
+
+[node name="Pills" type="Sprite2D" parent="Control" unique_id=1820309424]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+position = Vector2(433.99994, 649)
+rotation = 0.53930676
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("5_aqrfe")
+
+[node name="Stains3" type="Sprite2D" parent="Control" unique_id=255168744]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+z_index = -1
+position = Vector2(456, 650)
+rotation = -2.9932396
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("9_f8bhk")
+
+[node name="ScrapLeft2" type="Sprite2D" parent="Control" unique_id=199635093]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+position = Vector2(524, 195)
+rotation = 1.4905112
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("7_rk7he")
+
+[node name="Clip2" type="Sprite2D" parent="Control" unique_id=1737587133]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+position = Vector2(145, -35.000023)
+rotation = 1.017527
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_jht1t")
+
+[node name="Stains4" type="Sprite2D" parent="Control" unique_id=833470593]
+modulate = Color(0.9464151, 0.9408027, 0.8991186, 0.9843137)
+z_index = -1
+position = Vector2(472, 108)
+rotation = 4.5396013
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("9_f8bhk")
+
+[node name="Content" type="VBoxContainer" parent="." unique_id=199484218]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 105.0
+offset_right = 605.0
+offset_bottom = 724.0
+offset_transform_position = Vector2(0, -1.765)
+offset_transform_position_ratio = Vector2(0, 0.01)
+mouse_filter = 2
+theme_override_constants/separation = 106
+
+[node name="Heading" type="Label" parent="Content" unique_id=122544868]
+z_index = 1
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 25)
+offset_transform_rotation = 0.12391838
+theme_override_colors/font_color = Color(0.156863, 0.109804, 0.0588235, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 66
+text = "ПОРА ХАВАТЬ"
+horizontal_alignment = 1
+
+[node name="Cards" type="HBoxContainer" parent="Content" unique_id=876429415]
+custom_minimum_size = Vector2(0, -1)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="ArturCard" type="PanelContainer" parent="Content/Cards" unique_id=275602871]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 377)
+custom_maximum_size = Vector2(-1, 377)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxTexture_gse4b")
+
+[node name="VBox" type="VBoxContainer" parent="Content/Cards/ArturCard" unique_id=1727843026]
+custom_minimum_size = Vector2(0, -1)
+propagate_maximum_size = false
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_constants/separation = 52
+
+[node name="Portrait" type="TextureRect" parent="Content/Cards/ArturCard/VBox" unique_id=311290577]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 24)
+texture = ExtResource("4_24rcm")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/Cards/ArturCard/VBox" unique_id=861891973]
+propagate_maximum_size = false
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Food" type="Button" parent="Content/Cards/ArturCard/VBox/VBoxContainer" unique_id=1544713339]
+modulate = Color(0.808998, 0.8089984, 0.808998, 1)
+custom_minimum_size = Vector2(0, 60)
+custom_maximum_size = Vector2(-1, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+theme_override_icons/icon = ExtResource("4_water")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bnuf6")
+toggle_mode = true
+text = "Доширак"
+icon = ExtResource("3_food")
+icon_alignment = 2
+expand_icon = true
+
+[node name="SelectCross" type="TextureRect" parent="Content/Cards/ArturCard/VBox/VBoxContainer/Food" unique_id=1120940560]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 14.0
+offset_right = -8.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+texture = ExtResource("6_iwth8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Water" type="Button" parent="Content/Cards/ArturCard/VBox/VBoxContainer" unique_id=358795972]
+modulate = Color(0.808998, 0.8089984, 0.808998, 1)
+custom_minimum_size = Vector2(0, 60)
+custom_maximum_size = Vector2(-1, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+theme_override_icons/icon = ExtResource("4_water")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bnuf6")
+toggle_mode = true
+text = "Энергутик"
+icon_alignment = 2
+expand_icon = true
+
+[node name="SelectCross" type="TextureRect" parent="Content/Cards/ArturCard/VBox/VBoxContainer/Water" unique_id=566549335]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 14.0
+offset_right = -8.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+texture = ExtResource("6_iwth8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Medicine" type="Button" parent="Content/Cards/ArturCard/VBox/VBoxContainer" unique_id=534795066]
+modulate = Color(0.808998, 0.8089984, 0.808998, 1)
+custom_minimum_size = Vector2(0, 60)
+custom_maximum_size = Vector2(-1, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+theme_override_icons/icon = ExtResource("4_water")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bnuf6")
+toggle_mode = true
+text = "Парламент"
+icon = ExtResource("5_med")
+expand_icon = true
+
+[node name="SelectCross" type="TextureRect" parent="Content/Cards/ArturCard/VBox/VBoxContainer/Medicine" unique_id=566282572]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 14.0
+offset_right = -8.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+texture = ExtResource("6_iwth8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VasekCard" type="PanelContainer" parent="Content/Cards" unique_id=1405566149]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 377)
+custom_maximum_size = Vector2(-1, 377)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxTexture_gse4b")
+
+[node name="VBox" type="VBoxContainer" parent="Content/Cards/VasekCard" unique_id=202214543]
+custom_maximum_size = Vector2(-1, 377)
+propagate_maximum_size = false
+layout_mode = 2
+size_flags_stretch_ratio = 1.51
+offset_transform_enabled = true
+theme_override_constants/separation = 52
+
+[node name="Portrait" type="TextureRect" parent="Content/Cards/VasekCard/VBox" unique_id=1464222912]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 24)
+texture = ExtResource("8_55864")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/Cards/VasekCard/VBox" unique_id=856550352]
+propagate_maximum_size = false
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Food" type="Button" parent="Content/Cards/VasekCard/VBox/VBoxContainer" unique_id=573949213]
+modulate = Color(0.808998, 0.8089984, 0.808998, 1)
+custom_minimum_size = Vector2(0, 60)
+custom_maximum_size = Vector2(-1, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+theme_override_icons/icon = ExtResource("4_water")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bnuf6")
+toggle_mode = true
+text = "Доширак"
+icon = ExtResource("3_food")
+icon_alignment = 2
+expand_icon = true
+
+[node name="SelectCross" type="TextureRect" parent="Content/Cards/VasekCard/VBox/VBoxContainer/Food" unique_id=1813004745]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 14.0
+offset_right = -8.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+texture = ExtResource("6_iwth8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Water" type="Button" parent="Content/Cards/VasekCard/VBox/VBoxContainer" unique_id=1618093936]
+modulate = Color(0.808998, 0.8089984, 0.808998, 1)
+custom_minimum_size = Vector2(0, 60)
+custom_maximum_size = Vector2(-1, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_disabled_color = Color(0.45, 0.4, 0.35, 0.5)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+theme_override_icons/icon = ExtResource("4_water")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bnuf6")
+toggle_mode = true
+text = "Энергутик"
+icon_alignment = 2
+expand_icon = true
+
+[node name="SelectCross" type="TextureRect" parent="Content/Cards/VasekCard/VBox/VBoxContainer/Water" unique_id=1763462449]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 14.0
+offset_right = -8.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+texture = ExtResource("6_iwth8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Medicine" type="Button" parent="Content/Cards/VasekCard/VBox/VBoxContainer" unique_id=1798277286]
+modulate = Color(0.808998, 0.8089984, 0.808998, 1)
+custom_minimum_size = Vector2(0, 60)
+custom_maximum_size = Vector2(-1, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+theme_override_icons/icon = ExtResource("4_water")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bnuf6")
+toggle_mode = true
+text = "Парламент"
+icon = ExtResource("5_med")
+expand_icon = true
+
+[node name="SelectCross" type="TextureRect" parent="Content/Cards/VasekCard/VBox/VBoxContainer/Medicine" unique_id=340757437]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 14.0
+offset_right = -8.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+texture = ExtResource("6_iwth8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KiryaCard" type="PanelContainer" parent="Content/Cards" unique_id=824050312]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 377)
+custom_maximum_size = Vector2(-1, 377)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_gse4b")
+
+[node name="VBox" type="VBoxContainer" parent="Content/Cards/KiryaCard" unique_id=481700082]
+custom_minimum_size = Vector2(0, -1)
+propagate_maximum_size = false
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_constants/separation = 52
+
+[node name="Portrait" type="TextureRect" parent="Content/Cards/KiryaCard/VBox" unique_id=1873506827]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 24)
+texture = ExtResource("9_iwth8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/Cards/KiryaCard/VBox" unique_id=808460893]
+propagate_maximum_size = false
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Food" type="Button" parent="Content/Cards/KiryaCard/VBox/VBoxContainer" unique_id=2098972710]
+modulate = Color(0.808998, 0.8089984, 0.808998, 1)
+custom_minimum_size = Vector2(0, 60)
+custom_maximum_size = Vector2(-1, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+theme_override_icons/icon = ExtResource("4_water")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bnuf6")
+toggle_mode = true
+text = "Доширак"
+icon = ExtResource("3_food")
+icon_alignment = 2
+expand_icon = true
+
+[node name="SelectCross" type="TextureRect" parent="Content/Cards/KiryaCard/VBox/VBoxContainer/Food" unique_id=1555407899]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 14.0
+offset_right = -8.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+texture = ExtResource("6_iwth8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Water" type="Button" parent="Content/Cards/KiryaCard/VBox/VBoxContainer" unique_id=1120813456]
+modulate = Color(0.808998, 0.8089984, 0.808998, 1)
+custom_minimum_size = Vector2(0, 60)
+custom_maximum_size = Vector2(-1, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_disabled_color = Color(0.45, 0.4, 0.35, 0.5)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+theme_override_icons/icon = ExtResource("4_water")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bnuf6")
+toggle_mode = true
+text = "Энергутик"
+icon_alignment = 2
+expand_icon = true
+
+[node name="SelectCross" type="TextureRect" parent="Content/Cards/KiryaCard/VBox/VBoxContainer/Water" unique_id=1602634574]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 14.0
+offset_right = -8.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+texture = ExtResource("6_iwth8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Medicine" type="Button" parent="Content/Cards/KiryaCard/VBox/VBoxContainer" unique_id=830635850]
+modulate = Color(0.808998, 0.8089984, 0.808998, 1)
+custom_minimum_size = Vector2(0, 60)
+custom_maximum_size = Vector2(-1, 200)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+theme_override_icons/icon = ExtResource("4_water")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnuf6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_bnuf6")
+toggle_mode = true
+text = "Парламент"
+icon = ExtResource("5_med")
+expand_icon = true
+
+[node name="SelectCross" type="TextureRect" parent="Content/Cards/KiryaCard/VBox/VBoxContainer/Medicine" unique_id=830977102]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 14.0
+offset_right = -8.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+texture = ExtResource("6_iwth8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Message" type="Label" parent="Content" unique_id=1878963978]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.32, 0.18, 1)
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 3

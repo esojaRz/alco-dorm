@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b3c84mfd6yhiu"
+path="res://.godot/imported/Cold Walls.mp3-7fe162ae0048b4c1ccde0f6429701d48.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/game_sound/Cold Walls.mp3"
+dest_files=["res://.godot/imported/Cold Walls.mp3-7fe162ae0048b4c1ccde0f6429701d48.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

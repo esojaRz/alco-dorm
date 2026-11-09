@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://cneer1m3ck4s8"]
+
+[ext_resource type="Texture2D" uid="uid://ce7t17kppwq4y" path="res://scene/main.menu.jpg" id="1_e5g8k"]
+[ext_resource type="FontFile" uid="uid://gnb370px8rl2" path="res://font/ctclovebernardmtcondensed.otf" id="2_8hxod"]
+[ext_resource type="Texture2D" uid="uid://tuyykedoqewn" path="res://assets/free-icon-exit-7995448.png" id="3_bo06a"]
+[ext_resource type="Script" uid="uid://dcu6arud17008" path="res://scripts/button/button.gd" id="4_15se8"]
+[ext_resource type="AudioStream" uid="uid://b3m40unwjeius" path="res://assets/sounds/Main_menu.mp3" id="5_xs5te"]
+
+[sub_resource type="Animation" id="Animation_8hxod"]
+length = 3.7666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fade_in"]
+resource_name = "fade_in"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8666667, 1.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0.9764706), Color(0, 0, 0, 0.8980392), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fade"]
+_data = {
+&"RESET": SubResource("Animation_8hxod"),
+&"fade_in": SubResource("Animation_fade_in")
+}
+
+[node name="Menu" type="Node2D" unique_id=1396160229]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=726022515]
+
+[node name="Main_menu" type="Sprite2D" parent="CanvasLayer" unique_id=688204071]
+position = Vector2(947, 542)
+scale = Vector2(1.015, 1.02)
+texture = ExtResource("1_e5g8k")
+
+[node name="play_button" type="Button" parent="CanvasLayer/Main_menu" unique_id=788334975]
+modulate = Color(1, 1, 1, 0.9098039)
+offset_left = 228.57138
+offset_top = -279.4118
+offset_right = 517.5714
+offset_bottom = -152.4118
+rotation = -0.05991675
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0.70380723, 0.7038082, 0.7038074, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_8hxod")
+theme_override_font_sizes/font_size = 100
+text = "Играть"
+flat = true
+
+[node name="settings_button" type="Button" parent="CanvasLayer/Main_menu" unique_id=1002351276]
+modulate = Color(1, 1, 1, 0.9098039)
+offset_left = 174.38426
+offset_top = -69.607834
+offset_right = 608.3843
+offset_bottom = 57.392166
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0.6666667, 0.6627451, 0.654902, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_8hxod")
+theme_override_font_sizes/font_size = 100
+text = "Настройки"
+flat = true
+
+[node name="exit_button" type="Button" parent="CanvasLayer/Main_menu" unique_id=1100187869]
+modulate = Color(0.34781694, 0.34781697, 0.3478169, 0.9098039)
+offset_left = 623.6453
+offset_top = 195.09804
+offset_right = 1143.6455
+offset_bottom = 715.098
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.2, 0.2)
+offset_transform_visual_only = false
+icon = ExtResource("3_bo06a")
+flat = true
+icon_alignment = 1
+script = ExtResource("4_15se8")
+
+[node name="quest_button" type="Button" parent="CanvasLayer/Main_menu" unique_id=1472749463]
+modulate = Color(1, 1, 1, 0.9098039)
+offset_left = 169.45815
+offset_top = 164.70589
+offset_right = 603.4581
+offset_bottom = 291.70587
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_colors/font_color = Color(0.6666667, 0.6627451, 0.654902, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_8hxod")
+theme_override_font_sizes/font_size = 100
+text = "Концовки"
+flat = true
+
+[node name="FadeLayer" type="CanvasLayer" parent="." unique_id=383042354]
+layer = 100
+visible = false
+
+[node name="Fade" type="ColorRect" parent="FadeLayer" unique_id=579023495]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -29.0
+offset_right = 74.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeLayer/Fade" unique_id=1107310318]
+libraries/ = SubResource("AnimationLibrary_fade")
+autoplay = &"fade_in"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1785127481]
+stream = ExtResource("5_xs5te")
+volume_db = -35.894
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/Main_menu/play_button" to="CanvasLayer/Main_menu/exit_button" method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main_menu/exit_button" to="CanvasLayer/Main_menu/exit_button" method="_on_pressed"]

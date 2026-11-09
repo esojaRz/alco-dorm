@@ -1,0 +1,685 @@
+[gd_scene format=3 uid="uid://83y1rxqom1cl"]
+
+[ext_resource type="Texture2D" uid="uid://e5m24cch34ad" path="res://scene/day/day.png" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://bu3ndl27ea3m8" path="res://characters/artur.png" id="2_epypp"]
+[ext_resource type="Texture2D" uid="uid://b8flm3c1k3xdv" path="res://scene/evening/evening.png" id="2_nr8wp"]
+[ext_resource type="Texture2D" uid="uid://tevyn61wn3tn" path="res://characters/vasek.png" id="3_0hol4"]
+[ext_resource type="Texture2D" uid="uid://c1qyaqnr313qa" path="res://characters/dead/vasek_d.png" id="3_24dk6"]
+[ext_resource type="Texture2D" uid="uid://dpfw701mjxsde" path="res://characters/kirya.png" id="4_0hol4"]
+[ext_resource type="Texture2D" uid="uid://ds66hqpuxj0qk" path="res://assets/props/doshik.png" id="5_d21ai"]
+[ext_resource type="Texture2D" uid="uid://cdste78huehyr" path="res://assets/props/energy.png" id="6_ir8iy"]
+[ext_resource type="Texture2D" uid="uid://u5hahsjw5hvu" path="res://characters/dead/artur_d.png" id="6_mryly"]
+[ext_resource type="Texture2D" uid="uid://b04ugobekih50" path="res://assets/props/dihlovos.png" id="7_0h7mo"]
+[ext_resource type="Script" uid="uid://dv2yxrnxqrjb7" path="res://scripts/button/button_game.gd" id="7_d21ai"]
+[ext_resource type="Texture2D" uid="uid://cscy7euhk61d5" path="res://characters/dead/kirya_d.png" id="8_kq1c5"]
+[ext_resource type="Texture2D" uid="uid://caclik6re4m6o" path="res://assets/props/cigarete.png" id="8_nr8wp"]
+[ext_resource type="Script" uid="uid://bp1be1atw4oju" path="res://scripts/button/interface.gd" id="8_rj586"]
+[ext_resource type="FontFile" uid="uid://gnb370px8rl2" path="res://font/ctclovebernardmtcondensed.otf" id="9_4d7sh"]
+[ext_resource type="Texture2D" uid="uid://c8v7jy80ls1vp" path="res://assets/props/cat_eat.png" id="9_d2bti"]
+[ext_resource type="Texture2D" uid="uid://4volpjf2lrwd" path="res://assets/props/anim_book/Слой 1.png" id="12_7vxoj"]
+[ext_resource type="Texture2D" uid="uid://bd4uijskp1mue" path="res://assets/props/anim_book/Слой 2.png" id="13_ei405"]
+[ext_resource type="Texture2D" uid="uid://dgwenax400v75" path="res://assets/props/anim_book/Слой 3.png" id="14_e8dv2"]
+[ext_resource type="Texture2D" uid="uid://cpikqc13ut03w" path="res://assets/props/anim_book/Слой 4.png" id="15_2nhjh"]
+[ext_resource type="Texture2D" uid="uid://b1vywhfjr76t5" path="res://assets/props/anim_book/Слой 5.png" id="16_bjha6"]
+[ext_resource type="Texture2D" uid="uid://dse2v6j8oghp2" path="res://assets/props/anim_book/Слой 6.png" id="17_gt76g"]
+[ext_resource type="Texture2D" uid="uid://btv2obns801pi" path="res://assets/props/anim_book/Слой 7.png" id="18_1fr6y"]
+[ext_resource type="Texture2D" uid="uid://d25ru66d0rpi0" path="res://assets/icon/arrow_book.png" id="20_ei405"]
+[ext_resource type="Script" uid="uid://u1mfakinsi0l" path="res://scripts/diary/diary.gd" id="21_diary"]
+[ext_resource type="Script" uid="uid://bfunpr2mavywa" path="res://scripts/diary/diary_page.gd" id="22_page"]
+[ext_resource type="Texture2D" uid="uid://cqshrr2oy1btn" path="res://characters/portrait/artur_p.png" id="23_2hxjc"]
+[ext_resource type="PackedScene" uid="uid://bgxh8l0gypvh1" path="res://scene/diary/character_card.tscn" id="23_card"]
+[ext_resource type="Texture2D" uid="uid://dnyq0pbth8o8x" path="res://characters/portrait/vasek_p.png" id="24_ebxd8"]
+[ext_resource type="Texture2D" uid="uid://p201ynkssdw4" path="res://characters/portrait/kirya_p.png" id="25_2u7jv"]
+[ext_resource type="PackedScene" uid="uid://fllc0678gil2" path="res://scene/day_cycle/day_cycle.tscn" id="26_daycycle"]
+[ext_resource type="Texture2D" uid="uid://dmviwb6y4dy7j" path="res://characters/dead/portrait_d/artur_d_partret.png" id="27_arturdeadp"]
+[ext_resource type="Texture2D" uid="uid://bxc6sl1dcsrw7" path="res://characters/dead/portrait_d/vasek_d_partret.png" id="28_vasekdeadp"]
+[ext_resource type="Texture2D" uid="uid://dr7c21m1wceje" path="res://characters/dead/portrait_d/kirya_d_partret.png" id="29_kiryadeadp"]
+[ext_resource type="Script" uid="uid://dc440shxgtpyl" path="res://scripts/day_cycle/room_character_hover.gd" id="30_roomhover"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7vxoj"]
+radius = 44.5625
+height = 152.84161
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dead"]
+radius = 55.0
+height = 180.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cnnru"]
+radius = 56.83
+height = 214.79
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_540hr"]
+radius = 74.88623
+height = 271.83932
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnnru"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="Animation" id="Animation_8hxod"]
+length = 3.7666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fade_in"]
+resource_name = "fade_in"
+length = 2.1666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.56666666, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0.9764706), Color(0, 0, 0, 0.8980392), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q6r6c"]
+_data = {
+&"RESET": SubResource("Animation_8hxod"),
+&"fade_in": SubResource("Animation_fade_in")
+}
+
+[sub_resource type="Animation" id="Animation_rj586"]
+length = 6.633333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Book:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Book:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(971, 1350)]
+}
+
+[sub_resource type="Animation" id="Animation_d21ai"]
+resource_name = "book_anim"
+length = 0.56666666
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.3529412)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Book:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.28485024, 0.28485024, 0.28485024, 1), Color(0.556953, 0.556953, 0.5569529, 1), Color(0.7708395, 0.77083945, 0.7708394, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Book:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1.6244974, 8.876567),
+"update": 0,
+"values": [Vector2(971, 1350), Vector2(970.99994, 515)]
+}
+
+[sub_resource type="Animation" id="Animation_4d7sh"]
+resource_name = "book_position"
+length = 5.6666665
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rj586"]
+_data = {
+&"RESET": SubResource("Animation_rj586"),
+&"book_anim": SubResource("Animation_d21ai"),
+&"book_position": SubResource("Animation_4d7sh")
+}
+
+[sub_resource type="Animation" id="Animation_2hxjc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_7vxoj")]
+}
+
+[sub_resource type="Animation" id="Animation_ebxd8"]
+resource_name = "book_list_anim"
+length = 0.6666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("12_7vxoj"), ExtResource("13_ei405"), ExtResource("14_e8dv2"), ExtResource("15_2nhjh"), ExtResource("16_bjha6"), ExtResource("17_gt76g"), ExtResource("18_1fr6y")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2u7jv"]
+_data = {
+&"RESET": SubResource("Animation_2hxjc"),
+&"book_list_anim": SubResource("Animation_ebxd8")
+}
+
+[sub_resource type="Animation" id="Animation_ir8iy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.61960787)]
+}
+
+[sub_resource type="Animation" id="Animation_hqns4"]
+resource_name = "text_anim_day"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 5.4641595),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.16470589, 0.16470589, 0.16470589, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x0ka3"]
+_data = {
+&"RESET": SubResource("Animation_ir8iy"),
+&"text_anim_day": SubResource("Animation_hqns4")
+}
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_1vivr"]
+
+[node name="Node2D" type="Node2D" unique_id=631683568]
+modulate = Color(0.9955804, 0.99558026, 0.99558026, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=585507936]
+
+[node name="Day" type="Sprite2D" parent="CanvasLayer" unique_id=1501920152]
+position = Vector2(968, 544)
+scale = Vector2(1.0004358, 1.0073677)
+texture = ExtResource("1_0e48y")
+
+[node name="Evening" type="Sprite2D" parent="CanvasLayer/Day" unique_id=1372833745]
+visible = false
+position = Vector2(-2.9987016, -0.99266875)
+scale = Vector2(0.99174225, 0.9977607)
+texture = ExtResource("2_nr8wp")
+
+[node name="Person" type="Node" parent="CanvasLayer/Day" unique_id=1505433070]
+script = ExtResource("30_roomhover")
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer/Day/Person" unique_id=491261910]
+
+[node name="Vasek" type="Sprite2D" parent="CanvasLayer/Day/Person/Node2D" unique_id=229364059]
+position = Vector2(930, 585)
+texture = ExtResource("3_0hol4")
+
+[node name="TooltipAnchor" type="Marker2D" parent="CanvasLayer/Day/Person/Node2D/Vasek" unique_id=900567680]
+position = Vector2(4, -161)
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Day/Person/Node2D/Vasek" unique_id=719440707]
+position = Vector2(3, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Day/Person/Node2D/Vasek/Area2D" unique_id=1152958291]
+position = Vector2(-6.999939, -4)
+scale = Vector2(1.4586235, 2.263781)
+shape = SubResource("CapsuleShape2D_7vxoj")
+
+[node name="VasekD" type="Sprite2D" parent="CanvasLayer/Day/Person/Node2D" unique_id=299549172]
+visible = false
+modulate = Color(0.5529554, 0.5529556, 0.55295557, 1)
+position = Vector2(913, 692)
+texture = ExtResource("3_24dk6")
+
+[node name="TooltipAnchor" type="Marker2D" parent="CanvasLayer/Day/Person/Node2D/VasekD" unique_id=1125894120]
+position = Vector2(0, -149)
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Day/Person/Node2D/VasekD" unique_id=1828710597]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Day/Person/Node2D/VasekD/Area2D" unique_id=1773613656]
+shape = SubResource("CapsuleShape2D_dead")
+
+[node name="Node2D2" type="Node2D" parent="CanvasLayer/Day/Person" unique_id=1671160050]
+
+[node name="Artur" type="Sprite2D" parent="CanvasLayer/Day/Person/Node2D2" unique_id=1412018039]
+position = Vector2(1218, 711)
+texture = ExtResource("2_epypp")
+
+[node name="TooltipAnchor" type="Marker2D" parent="CanvasLayer/Day/Person/Node2D2/Artur" unique_id=1054393466]
+position = Vector2(20, -242)
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Day/Person/Node2D2/Artur" unique_id=930431977]
+position = Vector2(18, -202)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Day/Person/Node2D2/Artur/Area2D" unique_id=1975140633]
+position = Vector2(-18.00006, 189.99998)
+rotation = 0.20384136
+scale = Vector2(1.4586235, 2.263781)
+shape = SubResource("CapsuleShape2D_cnnru")
+
+[node name="ArturD" type="Sprite2D" parent="CanvasLayer/Day/Person/Node2D2" unique_id=1400573571]
+visible = false
+modulate = Color(0.6706895, 0.6706895, 0.6706895, 1)
+position = Vector2(1216, 730)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("6_mryly")
+
+[node name="TooltipAnchor" type="Marker2D" parent="CanvasLayer/Day/Person/Node2D2/ArturD" unique_id=471646049]
+position = Vector2(0, -149)
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Day/Person/Node2D2/ArturD" unique_id=233269721]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Day/Person/Node2D2/ArturD/Area2D" unique_id=1607999772]
+shape = SubResource("CapsuleShape2D_dead")
+
+[node name="Node2D3" type="Node2D" parent="CanvasLayer/Day/Person" unique_id=172788233]
+
+[node name="Kirya" type="Sprite2D" parent="CanvasLayer/Day/Person/Node2D3" unique_id=385458341]
+modulate = Color(0.8907497, 0.8953779, 0.90302473, 1)
+texture_filter = 2
+position = Vector2(727.99994, 367)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("4_0hol4")
+
+[node name="TooltipAnchor" type="Marker2D" parent="CanvasLayer/Day/Person/Node2D3/Kirya" unique_id=758792687]
+position = Vector2(53.846287, -289.23077)
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Day/Person/Node2D3/Kirya" unique_id=1341729500]
+position = Vector2(46.153927, -238.46155)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Day/Person/Node2D3/Kirya/Area2D" unique_id=449455125]
+position = Vector2(-16.923038, 250.76927)
+rotation = -0.113146186
+scale = Vector2(1.4586235, 2.263781)
+shape = SubResource("CapsuleShape2D_540hr")
+
+[node name="KiryaD" type="Sprite2D" parent="CanvasLayer/Day/Person/Node2D3" unique_id=121445361]
+visible = false
+modulate = Color(0.65834004, 0.6583399, 0.6583399, 1)
+position = Vector2(735, 384)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("8_kq1c5")
+
+[node name="TooltipAnchor" type="Marker2D" parent="CanvasLayer/Day/Person/Node2D3/KiryaD" unique_id=237158976]
+position = Vector2(0, -254)
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Day/Person/Node2D3/KiryaD" unique_id=1371877068]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Day/Person/Node2D3/KiryaD/Area2D" unique_id=1935166020]
+shape = SubResource("CapsuleShape2D_dead")
+
+[node name="Props" type="Node" parent="CanvasLayer/Day" unique_id=1678648328]
+
+[node name="Doshik" type="Sprite2D" parent="CanvasLayer/Day/Props" unique_id=1355862611]
+modulate = Color(0.8047428, 0.8047426, 0.8047426, 1)
+texture_filter = 2
+position = Vector2(1782, 214.99997)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_d21ai")
+
+[node name="Energy" type="Sprite2D" parent="CanvasLayer/Day/Props" unique_id=1860656274]
+modulate = Color(0.73300546, 0.7330054, 0.7330054, 1)
+texture_filter = 2
+position = Vector2(1787, 83)
+rotation = 0.5576363
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("6_ir8iy")
+
+[node name="Dihlovos" type="Sprite2D" parent="CanvasLayer/Day/Props" unique_id=1691730778]
+modulate = Color(0.67481464, 0.6748146, 0.6748148, 1)
+texture_filter = 2
+position = Vector2(1792.0001, 364)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_0h7mo")
+
+[node name="Cigarete" type="Sprite2D" parent="CanvasLayer/Day/Props" unique_id=1988934002]
+modulate = Color(0.728822, 0.728822, 0.728822, 1)
+texture_filter = 2
+position = Vector2(1788, 497)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("8_nr8wp")
+
+[node name="CatEat" type="Sprite2D" parent="CanvasLayer/Day/Props" unique_id=844082984]
+modulate = Color(0.7919991, 0.79199916, 0.7919991, 1)
+texture_filter = 2
+position = Vector2(1788, 601)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("9_d2bti")
+
+[node name="CharacterTooltip" type="PanelContainer" parent="CanvasLayer" unique_id=583379419]
+z_index = 100
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cnnru")
+
+[node name="Label" type="Label" parent="CanvasLayer/CharacterTooltip" unique_id=1866957115]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_4d7sh")
+theme_override_font_sizes/font_size = 22
+text = "Имя 
+Нейтральный"
+horizontal_alignment = 1
+
+[node name="FadeLayer_Game" type="CanvasLayer" parent="." unique_id=1886314136]
+layer = 100
+visible = false
+
+[node name="Fade" type="ColorRect" parent="FadeLayer_Game" unique_id=774642718]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -29.0
+offset_right = 74.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeLayer_Game/Fade" unique_id=1471571581]
+libraries/ = SubResource("AnimationLibrary_q6r6c")
+autoplay = &"fade_in"
+
+[node name="Layer_Book" type="CanvasLayer" parent="." unique_id=706957998]
+
+[node name="Button" type="Button" parent="Layer_Book" unique_id=1753941685]
+offset_left = 385.0
+offset_top = 964.0
+offset_right = 400.6836
+offset_bottom = 972.0
+scale = Vector2(74.83152, 20.058216)
+script = ExtResource("7_d21ai")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Layer_Book/Button" unique_id=340994375]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_rj586")
+
+[node name="Fade" type="ColorRect" parent="Layer_Book" unique_id=1910904488]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -13.0
+offset_right = 163.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Book" type="Sprite2D" parent="Layer_Book" unique_id=2086995186]
+position = Vector2(971, 1350)
+texture = ExtResource("12_7vxoj")
+script = ExtResource("21_diary")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Layer_Book/Book" unique_id=1395820811]
+libraries/ = SubResource("AnimationLibrary_2u7jv")
+
+[node name="DiaryPages" type="Control" parent="Layer_Book/Book" unique_id=1460013828]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -640.0
+offset_top = -448.0
+offset_right = 640.0
+offset_bottom = 448.0
+mouse_filter = 2
+
+[node name="Day1Page1" type="Control" parent="Layer_Book/Book/DiaryPages" unique_id=2041388124]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("22_page")
+
+[node name="LeftColumn" type="VBoxContainer" parent="Layer_Book/Book/DiaryPages/Day1Page1" unique_id=87787094]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 80.0
+offset_right = 620.0
+offset_bottom = 827.0
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Layer_Book/Book/DiaryPages/Day1Page1/LeftColumn" unique_id=625236291]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.156863, 0.109804, 0.0588235, 1)
+theme_override_fonts/font = ExtResource("9_4d7sh")
+theme_override_font_sizes/font_size = 54
+text = "Однажды..."
+horizontal_alignment = 1
+
+[node name="Intro" type="Label" parent="Layer_Book/Book/DiaryPages/Day1Page1/LeftColumn" unique_id=1260306386]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.2, 0.14902, 0.0901961, 1)
+theme_override_font_sizes/font_size = 22
+text = "Ты остался в общежитии один: мама и папа далеко, а денег хватит не на всё. Теперь каждый день — новая история о том, как выжить и не потерять себя."
+autowrap_mode = 3
+
+[node name="Spacer2" type="Control" parent="Layer_Book/Book/DiaryPages/Day1Page1/LeftColumn" unique_id=1445830314]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.36
+offset_transform_enabled = true
+mouse_filter = 2
+
+[node name="PrinciplesTitle" type="Label" parent="Layer_Book/Book/DiaryPages/Day1Page1/LeftColumn" unique_id=604869517]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.156863, 0.109804, 0.0588235, 1)
+theme_override_fonts/font = ExtResource("9_4d7sh")
+theme_override_font_sizes/font_size = 30
+text = "Основные принципы"
+
+[node name="Principles" type="Label" parent="Layer_Book/Book/DiaryPages/Day1Page1/LeftColumn" unique_id=279850744]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.2, 0.14902, 0.0901961, 1)
+theme_override_font_sizes/font_size = 21
+text = "• Следи за голодом, сном и деньгами.
+• Каждый день приносит новые события.
+• Прошлые страницы дневника уже не вернуть."
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="Layer_Book/Book/DiaryPages/Day1Page1/LeftColumn" unique_id=998306883]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="RightColumn" type="VBoxContainer" parent="Layer_Book/Book/DiaryPages/Day1Page1" unique_id=906167267]
+layout_mode = 0
+offset_left = 660.0
+offset_top = 80.0
+offset_right = 1240.0
+offset_bottom = 700.0
+mouse_filter = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Layer_Book/Book/DiaryPages/Day1Page1/RightColumn" unique_id=1172194127]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.156863, 0.109804, 0.0588235, 1)
+theme_override_fonts/font = ExtResource("9_4d7sh")
+theme_override_font_sizes/font_size = 46
+text = "Твои соседи"
+horizontal_alignment = 1
+
+[node name="ArturCard" parent="Layer_Book/Book/DiaryPages/Day1Page1/RightColumn" unique_id=1274521237 instance=ExtResource("23_card")]
+layout_mode = 2
+character_name = "Артур"
+bio = "Сосед с верхней койки. Любит шумные компании и всегда знает, где достать еду. Его идеи редко бывают безопасными."
+portrait = ExtResource("23_2hxjc")
+character_id = "artur"
+dead_portrait = ExtResource("27_arturdeadp")
+
+[node name="VasekCard" parent="Layer_Book/Book/DiaryPages/Day1Page1/RightColumn" unique_id=496794632 instance=ExtResource("23_card")]
+layout_mode = 2
+character_name = "Васек"
+bio = "Хозяйственный сосед. Может поделиться припасами, если ты поможешь ему с делами."
+portrait = ExtResource("24_ebxd8")
+character_id = "vasek"
+dead_portrait = ExtResource("28_vasekdeadp")
+
+[node name="Spacer" type="Control" parent="Layer_Book/Book/DiaryPages/Day1Page1/RightColumn/VasekCard" unique_id=1769931251]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="KiryaCard" parent="Layer_Book/Book/DiaryPages/Day1Page1/RightColumn" unique_id=1704286639 instance=ExtResource("23_card")]
+layout_mode = 2
+character_name = "Киря"
+bio = "Тихий и загадочный. Часто пропадает, но возвращается с чем-то полезным."
+portrait = ExtResource("25_2u7jv")
+character_id = "kirya"
+dead_portrait = ExtResource("29_kiryadeadp")
+
+[node name="StartDayButton" type="Button" parent="Layer_Book/Book/DiaryPages/Day1Page1/RightColumn" unique_id=972177871]
+custom_minimum_size = Vector2(260, 44)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("9_4d7sh")
+theme_override_font_sizes/font_size = 26
+text = "НАЧАТЬ ДЕНЬ"
+icon = ExtResource("20_ei405")
+icon_alignment = 2
+expand_icon = true
+
+[node name="DayCyclePage" parent="Layer_Book/Book/DiaryPages" unique_id=1466671561 instance=ExtResource("26_daycycle")]
+visible = false
+layout_mode = 1
+offset_left = -2.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 4.0
+
+[node name="Interface" type="CanvasLayer" parent="." unique_id=943230888]
+script = ExtResource("8_rj586")
+
+[node name="Day_Count" type="Control" parent="Interface" unique_id=497337938]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Fade" type="ColorRect" parent="Interface/Day_Count" unique_id=1917798539]
+visible = false
+z_index = 10
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(48.360004, 27.2)
+mouse_filter = 2
+color = Color(0, 0, 0, 0.61960787)
+
+[node name="Label" type="Label" parent="Interface/Day_Count" unique_id=1201397700]
+z_index = 11
+layout_mode = 0
+offset_left = 625.0
+offset_top = 368.99997
+offset_right = 1356.0
+offset_bottom = 642.0
+theme_override_fonts/font = ExtResource("9_4d7sh")
+theme_override_font_sizes/font_size = 200
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interface/Day_Count/Label" unique_id=498535026]
+libraries/ = SubResource("AnimationLibrary_x0ka3")
+
+[node name="BlackFade" type="ColorRect" parent="Interface" unique_id=1879551228]
+visible = false
+z_index = 9
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Control" type="Control" parent="Interface" unique_id=61305524]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1110391239]
+stream = SubResource("AudioStreamMicrophone_1vivr")
+
+[connection signal="mouse_entered" from="CanvasLayer/Day/Person/Node2D/Vasek/Area2D" to="Layer_Book/Button" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Day/Person/Node2D/Vasek/Area2D" to="Layer_Book/Button" method="_on_area_2d_mouse_exited"]
+[connection signal="pressed" from="Layer_Book/Button" to="Layer_Book/Button" method="_on_pressed"]
