@@ -3,9 +3,9 @@ extends Control
 const ITEM_LABELS := {
 	"food": "",
 	"water": "",
-	"medicine": "",
+	"cigarettes": "",
 }
-const ITEM_ORDER: Array[String] = ["food", "water", "medicine"]
+const ITEM_ORDER: Array[String] = ["food", "water", "cigarettes"]
 
 var _day_cycle: Node
 var _selected: Dictionary = {}
@@ -27,6 +27,9 @@ func _ready() -> void:
 		for item_type in ITEM_ORDER:
 			var button := _item_button(id, item_type)
 			button.toggled.connect(_on_item_toggled.bind(id, item_type))
+			# У выбранной кнопки текст не должен становиться белым на светлой карточке.
+			button.add_theme_color_override("font_pressed_color", Color(0.18, 0.12, 0.07, 1))
+			button.add_theme_color_override("font_hover_pressed_color", Color(0.18, 0.12, 0.07, 1))
 
 	visible = false
 
@@ -61,13 +64,25 @@ func refresh() -> void:
 		for item_type in ITEM_ORDER:
 			var button := _item_button(id, item_type)
 			var available := int(_day_cycle.inventory[item_type])
-			button.text = "%s (%d)" % [ITEM_LABELS[item_type], available]
-			button.disabled = not alive or away or available <= 0
+			# Сколько единиц останется свободными после всех отметок.
+			var free := maxi(available - _assigned_count(item_type), 0)
 			var selected: bool = _selected.has(id) and _selected[id].has(item_type)
+			button.text = "%s (%d)" % [ITEM_LABELS[item_type], free]
+			# Одна единица предмета достаётся только одному персонажу.
+			button.disabled = (not alive or away or free <= 0) and not selected
 			button.set_pressed_no_signal(selected)
 			var cross := button.get_node_or_null("SelectCross") as TextureRect
 			if cross != null:
 				cross.visible = selected
+
+
+## Сколько единиц предмета уже отдано (отмечено) персонажам.
+func _assigned_count(item_type: String) -> int:
+	var count := 0
+	for character_id in _selected:
+		if _selected[character_id].has(item_type):
+			count += 1
+	return count
 
 
 func apply_supplies() -> int:
@@ -93,6 +108,11 @@ func apply_supplies() -> int:
 
 
 func _on_item_toggled(pressed: bool, character_id: String, item_type: String) -> void:
+	# Нельзя выдать одну и ту же вещь нескольким персонажам.
+	if pressed and _assigned_count(item_type) >= int(_day_cycle.inventory[item_type]):
+		refresh()
+		return
+
 	if not _selected.has(character_id):
 		_selected[character_id] = {}
 	if pressed:
@@ -109,6 +129,7 @@ func _item_button(character_id: String, item_type: String) -> Button:
 			return card.get_node("VBox/VBoxContainer/Food")
 		"water":
 			return card.get_node("VBox/VBoxContainer/Water")
-		"medicine":
+		"cigarettes":
+			# Третий слот исторически называется Medicine в сцене, но это пачка сигарет.
 			return card.get_node("VBox/VBoxContainer/Medicine")
 	return null

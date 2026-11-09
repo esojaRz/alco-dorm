@@ -25,21 +25,24 @@ const CHARACTER_DATA := {
 	},
 }
 
-const ITEM_ORDER: Array[String] = ["food", "water", "medicine"]
+const ITEM_ORDER: Array[String] = ["food", "water", "cigarettes"]
 const ITEM_LABELS := {
-	"food": "Дошик",
-	"water": "Вода",
-	"medicine": "Аптечка",
+	"food": "Доширак",
+	"water": "Энергутик",
+	"cigarettes": "Сигареты",
 }
 const START_INVENTORY := {
 	"food": 4,
 	"water": 4,
-	"medicine": 2,
+	"cigarettes": 1,
 }
 
 const FOOD_VALUE := 40
 const WATER_VALUE := 40
-const MEDICINE_VALUE := 30
+const CIGARETTES_VALUE := 30
+
+## Пачку сигарет нельзя накопить: одновременно в запасах только одна.
+const CIGARETTES_MAX := 1
 
 const DAILY_HUNGER_LOSS := 25
 const DAILY_THIRST_LOSS := 30
@@ -57,6 +60,172 @@ const THIRST_THIRSTY := "Жажда"
 const THIRST_DEHYDRATED := "Обезвоживание"
 const THIRST_DEATH_BASE_DAYS := 3
 
+## Приносить припасы может только тот, кто ушёл на пары.
+## Шанс, что персонаж вернётся с добычей, и таблица находок у каждого свои.
+const LOOT_CHANCE := {
+	"artur": 0.62,
+	"vasek": 0.58,
+	"kirya": 0.55,
+}
+const LOOT_WEIGHTS := {
+	"artur": {"food": 60, "water": 25, "cigarettes": 15},
+	"vasek": {"food": 35, "water": 50, "cigarettes": 15},
+	"kirya": {"food": 20, "water": 30, "cigarettes": 50},
+}
+## Подсказка в подсказке кнопки: на чём специализируется персонаж.
+const LOOT_HINTS := {
+	"artur": "чаще приносит еду",
+	"vasek": "чаще приносит энергутик",
+	"kirya": "чаще приносит сигареты",
+}
+
+## Вечерние события: большая ситуация и 2–3 варианта действий.
+## У каждого варианта свой исход: текст, изменения запасов и состояние соседей.
+## inventory — изменение склада; stats.all / stats.<id> — голод, жажда, здоровье.
+const EVENTS := [
+	{
+		"id": "night_guest",
+		"title": "НОЧНОЙ ГОСТЬ",
+		"text": "В дверь стучат. На пороге — сосед с третьего этажа: куртка в снегу, руки дрожат, в руке початая бутылка. Его корпус закрыли на ночь, идти ему некуда. Он просит пустить хотя бы до утра.",
+		"options": [
+			{
+				"label": "Пустить на ночь",
+				"result": "Он доел остатки доширака и уснул на полу. Утром ушёл, оставив на столе помятую пачку сигарет.",
+				"inventory": {"food": -1, "cigarettes": 1},
+			},
+			{
+				"label": "Не пускать",
+				"result": "Он стучал ещё полчаса, потом ушёл. До утра в подъезде кто-то бил бутылки, и никто не спал.",
+				"stats": {"all": {"health": -10}},
+			},
+			{
+				"label": "Вынести ему чай",
+				"result": "Он выпил чай на лестнице, согрелся и ушёл. Бутылку оставил под дверью.",
+				"inventory": {"water": -1},
+				"stats": {"all": {"health": 5}},
+			},
+		],
+	},
+	{
+		"id": "flood",
+		"title": "ПОТОП НА КУХНЕ",
+		"text": "Ночью на общей кухне прорвало трубу. Вода уже в коридоре и медленно подбирается к двери. Соседи спят, из-за двери слышно, как капает с потолка.",
+		"options": [
+			{
+				"label": "Перекрыть стояк",
+				"result": "Ты крутил ржавый вентиль в темноте и ободрал руки, но воду остановил. Заодно набрал полную бутылку чистой воды.",
+				"inventory": {"water": 1},
+				"stats": {"all": {"health": -5}},
+			},
+			{
+				"label": "Разбудить весь этаж",
+				"result": "Всем миром перекрыли воду и вытерли коридор. Утром соседи принесли кто доширак, кто энергетик.",
+				"inventory": {"food": 1, "water": 1},
+				"stats": {"all": {"health": -5}},
+			},
+			{
+				"label": "Заткнуть щель под дверью",
+				"result": "Комната осталась сухой, а коридор к утру затопило. Соседи весь день косились в твою сторону.",
+			},
+		],
+	},
+	{
+		"id": "party",
+		"title": "ВЕЧЕРИНКА СВЕРХУ",
+		"text": "Сверху второй час гремят басы. Слышно, как открывают бутылки, смеются и что-то роняют. Уснуть невозможно, а до утра ещё далеко.",
+		"options": [
+			{
+				"label": "Попросить тишины",
+				"result": "Тебя встретили смехом, но музыку выключили. Кто-то сунул тебе пачку сигарет «за беспокойство».",
+				"inventory": {"cigarettes": 1},
+				"stats": {"all": {"health": -5}},
+			},
+			{
+				"label": "Пойти на вечеринку",
+				"result": "Ты вернулся под утро с чужим энергетиком в кармане и гудящей головой.",
+				"inventory": {"water": 1},
+				"stats": {"all": {"health": -10, "hunger": 10}},
+			},
+			{
+				"label": "Терпеть до утра",
+				"result": "Ты не сомкнул глаз. Утром голова гудела, зато ничего не случилось.",
+				"stats": {"all": {"health": -15}},
+			},
+		],
+	},
+	{
+		"id": "inspection",
+		"title": "ОБХОД КОМЕНДАНТА",
+		"text": "По общаге прошёл слух: ночью будет обход. Ищут сигареты, алкоголь и тех, кто живёт не по прописке. В коридоре уже слышны тяжёлые шаги и звон ключей.",
+		"options": [
+			{
+				"label": "Открыть дверь и поздороваться",
+				"result": "Комендант заглянул, вздохнул и ушёл. Соседи потом говорили, что ты молодец.",
+				"stats": {"all": {"health": 5}},
+			},
+			{
+				"label": "Спрятать сигареты в вентиляцию",
+				"result": "Ты провозился полчаса. Комендант прошёл мимо, но утром сигареты нашлись отсыревшими.",
+				"inventory": {"cigarettes": -1},
+				"stats": {"all": {"health": -5}},
+			},
+			{
+				"label": "Сделать вид, что никого нет",
+				"result": "Шаги замерли у двери. Кто-то дёрнул ручку и ушёл. Ты не дышал до утра.",
+				"stats": {"all": {"health": -10}},
+			},
+		],
+	},
+	{
+		"id": "fight",
+		"title": "ДРАКА НА ЭТАЖЕ",
+		"text": "В коридоре шум: двое соседей сцепились из-за какой-то ерунды. Слышны крики, звон и грохот упавшего стула. Драка медленно перемещается к вашей двери.",
+		"options": [
+			{
+				"label": "Разнять",
+				"result": "Ты влез между ними и получил локтем в лицо, но драку остановил. Утром оба принесли извинения и по дошираку.",
+				"inventory": {"food": 1},
+				"stats": {"all": {"health": -10}},
+			},
+			{
+				"label": "Позвать коменданта",
+				"result": "Комендант разогнал всех по комнатам. Соседи весь день смотрели косо, зато драки больше не было.",
+				"stats": {"all": {"health": 5}},
+			},
+			{
+				"label": "Не вмешиваться",
+				"result": "Ты переждал за дверью. Утром на этаже недосчитались пары вещей — и твоего доширака тоже.",
+				"inventory": {"food": -1},
+			},
+		],
+	},
+	{
+		"id": "cold",
+		"title": "ОТОПЛЕНИЕ ОТКЛЮЧИЛИ",
+		"text": "Отопление отключили до утра. Батареи ледяные, из окна дует, одеял на всех не хватает. В комнате становится заметно холоднее.",
+		"options": [
+			{
+				"label": "Собраться всем в одной комнате",
+				"result": "Вчетвером было теплее. Спали плохо, но никто не замёрз.",
+				"stats": {"all": {"health": 5, "hunger": -5}},
+			},
+			{
+				"label": "Переждать каждый у себя",
+				"result": "К утру все продрогли и не выспались.",
+				"stats": {"all": {"health": -10}},
+			},
+		],
+	},
+]
+
+## Бонусы за предметы, которые персонаж взял с собой на пары.
+const CARRY_LOOT_CHANCE_BONUS := 0.08
+const CARRY_EXTRA_ITEM_CHANCE := 0.15
+const CARRY_WEIGHT_MULTIPLIER := 2.0
+const CARRY_CIGARETTES_WEIGHT_MULTIPLIER := 3.0
+const MAX_LOOT_QUANTITY := 2
+const MAX_LOOT_CHANCE := 0.95
+
 var day := 1
 var phase := Phase.MORNING
 var inventory: Dictionary = {}
@@ -64,9 +233,14 @@ var characters: Dictionary = {}
 
 var selected_id := ""
 var away_id := ""
+var away_items: Array[String] = []
 var last_event_result := ""
 var event_text := ""
 var event_resolved := false
+var event_choice_made := false
+var event_result_text := ""
+var _current_event: Dictionary = {}
+var _last_event_id := ""
 
 var message := "Выбери, кто пойдёт на пары. Можно не отправлять никого."
 var _ui_updating := false
@@ -87,7 +261,10 @@ var _is_turning := false
 @onready var confirm_morning: Button = %ConfirmMorning
 
 @onready var cards: VBoxContainer = %Cards
+@onready var event_title_label: Label = %EventTitle
 @onready var event_text_label: Label = %EventText
+@onready var choices: VBoxContainer = %Choices
+@onready var choice_buttons: Array = [%Choice1, %Choice2, %Choice3]
 @onready var end_day: Button = %EndDay
 @onready var message_label: Label = %Message
 
@@ -128,6 +305,9 @@ func _ready() -> void:
 
 	confirm_morning.pressed.connect(_on_confirm_morning)
 	end_day.pressed.connect(_on_end_day)
+
+	for i in choice_buttons.size():
+		choice_buttons[i].pressed.connect(_on_choice_pressed.bind(i))
 
 	_setup_character_cards()
 	_update_ui()
@@ -238,6 +418,11 @@ func _on_confirm_morning() -> void:
 		if sent_names.size() > 0:
 			message += " С собой: " + ", ".join(sent_names) + "."
 
+	# Запоминаем, что именно он унёс: это даст бонусы к вечерней добыче.
+	away_items.clear()
+	if selected_id != "":
+		away_items = taken.duplicate()
+
 	selected_id = ""
 	_clear_item_selection()
 	_update_ui()
@@ -285,7 +470,7 @@ func _on_card_item_requested(character_id: String, item_type: String) -> void:
 
 
 func _on_end_day() -> void:
-	if phase != Phase.EVENING or event_resolved:
+	if phase != Phase.EVENING or event_resolved or not event_choice_made:
 		return
 
 	event_resolved = true
@@ -294,23 +479,11 @@ func _on_end_day() -> void:
 	if supply_page != null and supply_page.has_method("apply_supplies"):
 		supply_page.call("apply_supplies")
 
-	var present := _present_ids()
+	# Утренняя сводка: что принёс ушедший на пары и кто не пережил ночь.
+	var result_parts: Array[String] = []
 
-	var result_parts: Array[String] = [event_text]
-	var bonus_lines: Array[String] = []
-
-	if present.has("vasek"):
-		inventory["food"] += 1
-		bonus_lines.append("Васек приготовил еду: +1 дошик.")
-	if present.has("kirya"):
-		inventory["water"] += 1
-		bonus_lines.append("Киря принёс воды: +1 вода.")
-	if present.has("artur"):
-		inventory["medicine"] += 1
-		bonus_lines.append("Артур нашёл аптечку: +1 аптечка.")
-
-	if bonus_lines.size() > 0:
-		result_parts.append("\n".join(bonus_lines))
+	var loot_lines := _roll_loot()
+	result_parts.append_array(loot_lines)
 
 	day += 1
 	phase = Phase.MORNING
@@ -319,6 +492,7 @@ func _on_end_day() -> void:
 	if away_id != "":
 		characters[away_id]["away"] = false
 	away_id = ""
+	away_items.clear()
 
 	var dead_names: Array[String] = []
 	for id in CHARACTER_ORDER:
@@ -373,15 +547,25 @@ func _on_end_day() -> void:
 	if dead_names.size() > 0:
 		result_parts.append("Ночью не стало: " + ", ".join(dead_names) + ".")
 
+	if result_parts.is_empty():
+		result_parts.append("Ночь прошла спокойно.")
+
 	last_event_result = "\n".join(result_parts)
 	event_resolved = false
 	selected_id = ""
 	_clear_item_selection()
 	message = "Наступило утро дня %d." % day
-	_update_ui()
-	_apply_phase_visuals()
 	_update_diary_day()
 	await _close_diary_and_show_day_intro()
+	# Страховка, если интро не проигралось: состояние всё равно обновится.
+	_apply_morning_state()
+
+
+## Обновляет книгу и комнату под утро. Вызывается, пока экран чёрный,
+## чтобы смерть персонажа игрок увидел уже после затемнения.
+func _apply_morning_state() -> void:
+	_update_ui()
+	_apply_phase_visuals()
 
 
 func _close_diary_and_show_day_intro() -> void:
@@ -396,39 +580,170 @@ func _close_diary_and_show_day_intro() -> void:
 
 	var interface := game.get_node_or_null("Interface")
 	if interface != null and interface.has_method("play_day_intro"):
-		await interface.play_day_intro(day, true)
+		await interface.play_day_intro(day, true, false, Callable(self, "_apply_morning_state"))
 
 
+## Возвращает строки о том, что персонаж принёс с пар.
+## Приносить припасы может только тот, кто ушёл на пары.
+func _roll_loot() -> Array[String]:
+	var lines: Array[String] = []
+	if away_id == "":
+		return lines
+
+	var character_name: String = characters[away_id]["name"]
+
+	# Каждый предмет в руках немного повышает шанс вернуться с добычей.
+	var chance := float(LOOT_CHANCE[away_id]) + CARRY_LOOT_CHANCE_BONUS * away_items.size()
+	chance = minf(chance, MAX_LOOT_CHANCE)
+
+	if randf() >= chance:
+		lines.append("%s вернулся с пар ни с чем." % character_name)
+		return lines
+
+	var item_type := _pick_loot_item(away_id)
+	if item_type == "":
+		lines.append("%s вернулся с пар ни с чем." % character_name)
+		return lines
+
+	var quantity := 1
+	# Взятые с собой вещи позволяют унести больше за один раз.
+	if randf() < CARRY_EXTRA_ITEM_CHANCE * away_items.size():
+		quantity += 1
+	quantity = mini(quantity, MAX_LOOT_QUANTITY)
+
+	if item_type == "cigarettes":
+		var room := CIGARETTES_MAX - int(inventory[item_type])
+		quantity = mini(quantity, room)
+	if quantity <= 0:
+		return lines
+
+	inventory[item_type] = int(inventory[item_type]) + quantity
+	lines.append(
+		"%s принёс с пар: %s ×%d." % [character_name, ITEM_LABELS[item_type], quantity]
+	)
+	return lines
+
+
+## Взвешенный выбор находки. У каждого персонажа свои шансы,
+## а взятый с собой предмет повышает шанс найти именно его.
+func _pick_loot_item(character_id: String) -> String:
+	var weights: Dictionary = {}
+	var total := 0.0
+	var character_weights: Dictionary = LOOT_WEIGHTS[character_id]
+
+	for item_type in ITEM_ORDER:
+		# Пачка сигарет всегда одна, поэтому вторую не ищем.
+		if item_type == "cigarettes" and int(inventory[item_type]) >= CIGARETTES_MAX:
+			continue
+
+		var weight := float(character_weights[item_type])
+		if item_type in away_items:
+			if item_type == "cigarettes":
+				weight *= CARRY_CIGARETTES_WEIGHT_MULTIPLIER
+			else:
+				weight *= CARRY_WEIGHT_MULTIPLIER
+		if weight <= 0.0:
+			continue
+
+		weights[item_type] = weight
+		total += weight
+
+	if total <= 0.0:
+		return ""
+
+	var roll := randf() * total
+	for item_type in weights:
+		roll -= float(weights[item_type])
+		if roll < 0.0:
+			return item_type
+	return ""
+
+
+## Ставит на вечер новое большое событие и варианты выбора.
 func _prepare_event() -> void:
 	event_resolved = false
-	var present := _present_ids()
-	var present_names := _names(present)
-	var away_name := ""
-	if away_id != "":
-		away_name = characters[away_id]["name"]
+	event_choice_made = false
+	event_result_text = ""
+	_current_event = _pick_event()
+	event_text = String(_current_event.get("text", ""))
+	event_title_label.text = String(_current_event.get("title", "СОБЫТИЯ"))
+	_build_choices()
 
-	if present.is_empty():
-		if away_name != "":
-			event_text = "%s ушёл на пары. В комнате пусто, вечер проходит в тишине." % away_name
-		else:
-			event_text = "В комнате никого не осталось."
+
+## Случайное событие, но не то же самое, что было в прошлый вечер.
+func _pick_event() -> Dictionary:
+	if EVENTS.is_empty():
+		return {}
+
+	var candidates: Array = []
+	for event in EVENTS:
+		if event["id"] != _last_event_id:
+			candidates.append(event)
+
+	if candidates.is_empty():
+		candidates = EVENTS.duplicate()
+
+	var event: Dictionary = candidates[randi() % candidates.size()]
+	_last_event_id = String(event["id"])
+	return event
+
+
+func _build_choices() -> void:
+	var options: Array = _current_event.get("options", [])
+	for i in choice_buttons.size():
+		var button: Button = choice_buttons[i]
+		var has_option := i < options.size()
+		button.visible = has_option
+		if has_option:
+			button.text = String(options[i].get("label", ""))
+			button.disabled = false
+
+	# Если у события вдруг нет вариантов, не запираем игрока в вечере.
+	if options.is_empty():
+		event_choice_made = true
+
+
+func _on_choice_pressed(index: int) -> void:
+	if phase != Phase.EVENING or event_choice_made:
 		return
 
-	if away_id == "":
-		event_text = "Все в сборе. Вечер проходит спокойно."
-	else:
-		event_text = "%s ушёл на пары и не участвует в вечере. В комнате: %s." % [away_name, present_names]
+	var options: Array = _current_event.get("options", [])
+	if index < 0 or index >= options.size():
+		return
 
-	var details: Array[String] = []
-	if present.has("vasek"):
-		details.append("Васек готовит ужин.")
-	if present.has("kirya"):
-		details.append("Киря приносит воды.")
-	if present.has("artur"):
-		details.append("Артур находит аптечку.")
+	var option: Dictionary = options[index]
+	event_choice_made = true
+	_apply_event_effects(option)
+	event_result_text = String(option.get("result", ""))
+	event_text = String(_current_event.get("text", "")) + "\n\n" + event_result_text
+	message = "Исход: " + String(_current_event.get("title", ""))
+	_update_ui()
 
-	if details.size() > 0:
-		event_text += "\n" + "\n".join(details)
+
+## Применяет последствия выбора: склад и состояние соседей.
+func _apply_event_effects(option: Dictionary) -> void:
+	var inventory_changes: Dictionary = option.get("inventory", {})
+	for item_type in inventory_changes:
+		if not inventory.has(item_type):
+			continue
+		var value := int(inventory[item_type]) + int(inventory_changes[item_type])
+		if item_type == "cigarettes":
+			value = mini(value, CIGARETTES_MAX)
+		inventory[item_type] = maxi(value, 0)
+
+	var stats: Dictionary = option.get("stats", {})
+	for target in stats:
+		var changes: Dictionary = stats[target]
+		for character_id in CHARACTER_ORDER:
+			if target != "all" and target != character_id:
+				continue
+			var character: Dictionary = characters[character_id]
+			if not character["alive"] or character["away"]:
+				continue
+			for stat in changes:
+				if not character.has(stat):
+					continue
+				character[stat] = clampi(int(character[stat]) + int(changes[stat]), 0, 100)
 
 
 func _apply_item(character: Dictionary, item_type: String) -> void:
@@ -441,8 +756,8 @@ func _apply_item(character: Dictionary, item_type: String) -> void:
 			character["thirst"] = min(100, int(character["thirst"]) + WATER_VALUE)
 			character["days_without_water"] = 0
 			character["drank_today"] = true
-		"medicine":
-			character["health"] = min(100, int(character["health"]) + MEDICINE_VALUE)
+		"cigarettes":
+			character["health"] = min(100, int(character["health"]) + CIGARETTES_VALUE)
 
 
 func _hunger_stage(character: Dictionary) -> String:
@@ -510,6 +825,8 @@ func _update_ui() -> void:
 
 	confirm_morning.visible = morning_phase
 	confirm_morning.disabled = _is_turning
+	choices.visible = not morning_phase and not event_choice_made
+	end_day.visible = not morning_phase and event_choice_made
 	if selected_id == "":
 		confirm_morning.text = "ЖДАТЬ ВЕЧЕРА"
 	else:
@@ -525,7 +842,7 @@ func _update_character_buttons() -> void:
 		button.set_pressed_no_signal(id == selected_id)
 		button.icon = character["portrait"] if character["alive"] else character["dead_portrait"]
 		button.text = ""
-		button.tooltip_text = character["name"]
+		button.tooltip_text = "%s — %s" % [character["name"], LOOT_HINTS[id]]
 	_ui_updating = false
 
 
@@ -563,7 +880,7 @@ func _update_character_cards() -> void:
 			character["away"],
 			inventory["food"],
 			inventory["water"],
-			inventory["medicine"],
+			inventory["cigarettes"],
 			_hunger_stage(character),
 			_thirst_stage(character)
 		)
@@ -599,7 +916,7 @@ func _item_button(item_type: String) -> Button:
 			return food_select
 		"water":
 			return water_select
-		"medicine":
+		"cigarettes":
 			return medicine_select
 	return null
 

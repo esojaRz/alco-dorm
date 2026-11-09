@@ -15,7 +15,14 @@ func _ready() -> void:
 ## Показывает «ДЕНЬ N».
 ## start_black — экран уже чёрный (переход из меню), не затемняем повторно.
 ## with_black_fade — плавно затемняем, держим 2 секунды и показываем день.
-func play_day_intro(day_number: int, with_black_fade := false, start_black := false) -> void:
+## on_black — вызывается, когда экран уже полностью чёрный: можно незаметно
+## обновить состояние комнаты (например, показать умершего персонажа).
+func play_day_intro(
+	day_number: int,
+	with_black_fade := false,
+	start_black := false,
+	on_black := Callable()
+) -> void:
 	visible = true
 	book_button.disabled = true
 
@@ -29,6 +36,9 @@ func play_day_intro(day_number: int, with_black_fade := false, start_black := fa
 		fade_in.tween_property(black_fade, "color:a", 1.0, 0.8)
 		await fade_in.finished
 		await get_tree().create_timer(2.0).timeout
+
+	if on_black.is_valid():
+		on_black.call()
 
 	day = day_number
 	fade_day_text.text = "ДЕНЬ %d" % day

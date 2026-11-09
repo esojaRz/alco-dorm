@@ -30,7 +30,7 @@ var dead_portrait: Texture2D
 func _ready() -> void:
 	food_button.pressed.connect(func() -> void: item_requested.emit(character_id, "food"))
 	water_button.pressed.connect(func() -> void: item_requested.emit(character_id, "water"))
-	medicine_button.pressed.connect(func() -> void: item_requested.emit(character_id, "medicine"))
+	medicine_button.pressed.connect(func() -> void: item_requested.emit(character_id, "cigarettes"))
 
 
 func setup(display_name: String, portrait: Texture2D, bio: String, dead: Texture2D = null) -> void:
@@ -54,7 +54,7 @@ func update_state(
 	away: bool,
 	food_count: int,
 	water_count: int,
-	medicine_count: int,
+	cigarettes_count: int,
 	hunger_stage: String,
 	thirst_stage: String
 ) -> void:
@@ -72,10 +72,10 @@ func update_state(
 	var present := alive and not away
 	food_button.disabled = not present or food_count <= 0
 	water_button.disabled = not present or water_count <= 0
-	medicine_button.disabled = not present or medicine_count <= 0
+	medicine_button.disabled = not present or cigarettes_count <= 0
 	food_button.text = "Еда (%d)" % food_count
 	water_button.text = "Вода (%d)" % water_count
-	medicine_button.text = "Лечение (%d)" % medicine_count
+	medicine_button.text = "Сигареты (%d)" % cigarettes_count
 
 	if not alive:
 		if dead_portrait != null:
