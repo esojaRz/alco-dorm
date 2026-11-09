@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://cn7mph7qcwdqc" path="res://assets/props/anim_book/book_details/jar.png" id="10_jht1t"]
 [ext_resource type="Texture2D" uid="uid://hik8afijesn1" path="res://assets/props/anim_book/book_details/Pen.png" id="12_2ifbp"]
 
+[sub_resource type="Theme" id="Theme_sc1g6"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gse4b"]
 texture = ExtResource("3_tvgj1")
 expand_margin_left = 14.0
@@ -54,11 +56,14 @@ offset_left = 40.0
 offset_top = 80.0
 offset_right = 620.0
 offset_bottom = 700.0
+theme = SubResource("Theme_sc1g6")
 color = Color(0.976471, 0.945098, 0.878431, 1)
 
-[node name="Слой1" type="Sprite2D" parent="Background" unique_id=298571025]
-position = Vector2(600, 368)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1503753100]
+position = Vector2(318, 451)
 texture = ExtResource("2_u31vn")
+region_enabled = true
+region_rect = Rect2(0, 5, 640, 896)
 
 [node name="Control" type="Control" parent="." unique_id=1612679362]
 z_index = 100
