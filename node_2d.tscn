@@ -608,6 +608,7 @@ character_id = "kirya"
 dead_portrait = ExtResource("29_kiryadeadp")
 
 [node name="StartDayButton" type="Button" parent="Layer_Book/Book/DiaryPages/Day1Page1/RightColumn" unique_id=972177871]
+z_index = 100
 custom_minimum_size = Vector2(260, 44)
 layout_mode = 2
 size_flags_horizontal = 8
