@@ -6,10 +6,10 @@ const CHARACTER_ORDER: Array[String] = ["artur", "vasek", "kirya"]
 
 const CHARACTER_DATA := {
 	"artur": {
-		"name": "Артур",
+		"name": "Артурик",
 		"portrait": preload("res://characters/portrait/artur_p.png"),
 		"dead_portrait": preload("res://characters/dead/portrait_d/artur_d_partret.png"),
-		"bio": "Сосед с верхней койки. Любит шумные компании и всегда знает, где достать еду. Его идеи редко бывают безопасными.",
+		"bio": "Опасный паренек.",
 	},
 	"vasek": {
 		"name": "Васек",
@@ -63,20 +63,20 @@ const THIRST_DEATH_BASE_DAYS := 3
 ## Приносить припасы может только тот, кто ушёл на пары.
 ## Шанс, что персонаж вернётся с добычей, и таблица находок у каждого свои.
 const LOOT_CHANCE := {
-	"artur": 0.62,
-	"vasek": 0.58,
-	"kirya": 0.55,
+	"artur": 0.4,
+	"vasek": 0.35,
+	"kirya": 0.4,
 }
 const LOOT_WEIGHTS := {
-	"artur": {"food": 60, "water": 25, "cigarettes": 15},
-	"vasek": {"food": 35, "water": 50, "cigarettes": 15},
-	"kirya": {"food": 20, "water": 30, "cigarettes": 50},
+	"artur": {"food": 35, "water": 30, "cigarettes": 35},
+	"vasek": {"food": 60, "water": 30, "cigarettes": 10},
+	"kirya": {"food": 30, "water": 50, "cigarettes": 20},
 }
 ## Подсказка в подсказке кнопки: на чём специализируется персонаж.
 const LOOT_HINTS := {
-	"artur": "чаще приносит еду",
-	"vasek": "чаще приносит энергутик",
-	"kirya": "чаще приносит сигареты",
+	"artur": "чаще приносит СИГАРЕТЫ",
+	"vasek": "чаще приносит ЕДУ",
+	"kirya": "чаще приносит ЭНЕРГЕТИК",
 }
 
 ## Вечерние события: большая ситуация и 2–3 варианта действий.
@@ -241,8 +241,10 @@ var event_choice_made := false
 var event_result_text := ""
 var _current_event: Dictionary = {}
 var _last_event_id := ""
+## Название события, итог которого показываем утром на следующей странице.
+var last_event_name := ""
 
-var message := "Выбери, кто пойдёт на пары. Можно не отправлять никого."
+var message := "Выбери, кто пойдёт на пары. Можно никого не отправлять."
 var _ui_updating := false
 var _is_turning := false
 
@@ -293,7 +295,7 @@ func _ready() -> void:
 			"drank_today": false,
 		}
 
-	last_event_result = "Первый день. Выбери, кто пойдёт на пары, и что он возьмёт с собой."
+	last_event_result = "Первый день. Выбери, кто пойдёт на пары, и что возьмёт с собой."
 
 	artur_select.toggled.connect(_on_character_toggled.bind("artur"))
 	vasek_select.toggled.connect(_on_character_toggled.bind("vasek"))
@@ -339,7 +341,7 @@ func _on_start_day() -> void:
 	visible = true
 	pages_root.visible = true
 
-	message = "Утро дня 1. Выбери, кто пойдёт на пары."
+	message = "День 1. Утро. Выбери, кто пойдёт на пары."
 
 	if book != null:
 		var forward := book.get_node_or_null("PageForward")
@@ -479,11 +481,12 @@ func _on_end_day() -> void:
 	if supply_page != null and supply_page.has_method("apply_supplies"):
 		supply_page.call("apply_supplies")
 
-	# Утренняя сводка: что принёс ушедший на пары и кто не пережил ночь.
-	var result_parts: Array[String] = []
+	# Утренняя сводка: чем закончился вечер, что принёс ушедший на пары
+	# и кто не пережил ночь. Показываем её на следующей странице, уже утром.
+	var night_parts: Array[String] = []
 
 	var loot_lines := _roll_loot()
-	result_parts.append_array(loot_lines)
+	night_parts.append_array(loot_lines)
 
 	day += 1
 	phase = Phase.MORNING
@@ -545,12 +548,18 @@ func _on_end_day() -> void:
 			dead_names.append(character["name"])
 
 	if dead_names.size() > 0:
-		result_parts.append("Ночью не стало: " + ", ".join(dead_names) + ".")
+		night_parts.append("Ночью не стало: " + ", ".join(dead_names) + ".")
 
-	if result_parts.is_empty():
-		result_parts.append("Ночь прошла спокойно.")
+	if night_parts.is_empty():
+		night_parts.append("Ночь прошла спокойно.")
 
-	last_event_result = "\n".join(result_parts)
+	var morning_parts: Array[String] = []
+	if event_result_text != "":
+		morning_parts.append(event_result_text)
+	morning_parts.append_array(night_parts)
+
+	last_event_result = "\n\n".join(morning_parts)
+	last_event_name = String(_current_event.get("title", ""))
 	event_resolved = false
 	selected_id = ""
 	_clear_item_selection()
@@ -715,8 +724,9 @@ func _on_choice_pressed(index: int) -> void:
 	event_choice_made = true
 	_apply_event_effects(option)
 	event_result_text = String(option.get("result", ""))
-	event_text = String(_current_event.get("text", "")) + "\n\n" + event_result_text
-	message = "Исход: " + String(_current_event.get("title", ""))
+	# Итог не показываем сразу: он окажется утром на следующей странице.
+	event_text = String(_current_event.get("text", "")) + "\n\nТвой выбор: " + String(option.get("label", ""))
+	message = "Выбор сделан. Заверши день — итог будет утром."
 	_update_ui()
 
 
@@ -796,6 +806,14 @@ func _names(ids: Array[String]) -> String:
 	return ", ".join(names)
 
 
+func _last_event_heading() -> String:
+	if day == 1:
+		return "ЗНАКОМСТВО"
+	if last_event_name == "":
+		return "ПРОШЛЫМ ВЕЧЕРОМ"
+	return "ПРОШЛЫМ ВЕЧЕРОМ · " + last_event_name
+
+
 func _update_ui() -> void:
 	if phase == Phase.MORNING:
 		header.text = "УТРО · ДЕНЬ %d" % day
@@ -807,7 +825,7 @@ func _update_ui() -> void:
 	last_event_text.visible = morning_phase
 	morning.visible = morning_phase
 	evening.visible = not morning_phase
-	last_event_title.text = "ЗНАКОМСТВО" if day == 1 else "ПРОШЛЫМ ВЕЧЕРОМ"
+	last_event_title.text = _last_event_heading()
 	last_event_text.text = last_event_result
 	event_text_label.text = event_text
 	event_text_label.visible = not morning_phase
