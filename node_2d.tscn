@@ -385,6 +385,7 @@ shape = SubResource("CapsuleShape2D_dead")
 [node name="Props" type="Node" parent="CanvasLayer/Day" unique_id=1678648328]
 
 [node name="Doshik" type="Sprite2D" parent="CanvasLayer/Day/Props" unique_id=1355862611]
+visible = false
 modulate = Color(0.8047428, 0.8047426, 0.8047426, 1)
 texture_filter = 2
 position = Vector2(1782, 214.99997)
@@ -392,6 +393,7 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("5_d21ai")
 
 [node name="Energy" type="Sprite2D" parent="CanvasLayer/Day/Props" unique_id=1860656274]
+visible = false
 modulate = Color(0.73300546, 0.7330054, 0.7330054, 1)
 texture_filter = 2
 position = Vector2(1787, 83)
@@ -400,6 +402,7 @@ scale = Vector2(0.45, 0.45)
 texture = ExtResource("6_ir8iy")
 
 [node name="Dihlovos" type="Sprite2D" parent="CanvasLayer/Day/Props" unique_id=1691730778]
+visible = false
 modulate = Color(0.67481464, 0.6748146, 0.6748148, 1)
 texture_filter = 2
 position = Vector2(1792.0001, 364)
@@ -407,6 +410,7 @@ scale = Vector2(0.6, 0.6)
 texture = ExtResource("7_0h7mo")
 
 [node name="Cigarete" type="Sprite2D" parent="CanvasLayer/Day/Props" unique_id=1988934002]
+visible = false
 modulate = Color(0.728822, 0.728822, 0.728822, 1)
 texture_filter = 2
 position = Vector2(1788, 497)
@@ -414,6 +418,7 @@ scale = Vector2(0.45, 0.45)
 texture = ExtResource("8_nr8wp")
 
 [node name="CatEat" type="Sprite2D" parent="CanvasLayer/Day/Props" unique_id=844082984]
+visible = false
 modulate = Color(0.7919991, 0.79199916, 0.7919991, 1)
 texture_filter = 2
 position = Vector2(1788, 601)
@@ -521,7 +526,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.156863, 0.109804, 0.0588235, 1)
 theme_override_fonts/font = ExtResource("9_4d7sh")
 theme_override_font_sizes/font_size = 54
-text = "Однажды..."
+text = "заголовок"
 horizontal_alignment = 1
 
 [node name="Intro" type="Label" parent="Layer_Book/Book/DiaryPages/Day1Page1/LeftColumn" unique_id=1260306386]
@@ -529,7 +534,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.2, 0.14902, 0.0901961, 1)
 theme_override_font_sizes/font_size = 22
-text = "Ты остался в общежитии один: мама и папа далеко, а денег хватит не на всё. Теперь каждый день — новая история о том, как выжить и не потерять себя."
+text = "ы"
 autowrap_mode = 3
 
 [node name="Spacer2" type="Control" parent="Layer_Book/Book/DiaryPages/Day1Page1/LeftColumn" unique_id=1445830314]
@@ -580,8 +585,8 @@ horizontal_alignment = 1
 
 [node name="ArturCard" parent="Layer_Book/Book/DiaryPages/Day1Page1/RightColumn" unique_id=1274521237 instance=ExtResource("23_card")]
 layout_mode = 2
-character_name = "Артур"
-bio = "Сосед с верхней койки. Любит шумные компании и всегда знает, где достать еду. Его идеи редко бывают безопасными."
+character_name = "Артурик"
+bio = ""
 portrait = ExtResource("23_2hxjc")
 character_id = "artur"
 dead_portrait = ExtResource("27_arturdeadp")
@@ -589,7 +594,7 @@ dead_portrait = ExtResource("27_arturdeadp")
 [node name="VasekCard" parent="Layer_Book/Book/DiaryPages/Day1Page1/RightColumn" unique_id=496794632 instance=ExtResource("23_card")]
 layout_mode = 2
 character_name = "Васек"
-bio = "Хозяйственный сосед. Может поделиться припасами, если ты поможешь ему с делами."
+bio = ""
 portrait = ExtResource("24_ebxd8")
 character_id = "vasek"
 dead_portrait = ExtResource("28_vasekdeadp")
@@ -602,7 +607,7 @@ mouse_filter = 2
 [node name="KiryaCard" parent="Layer_Book/Book/DiaryPages/Day1Page1/RightColumn" unique_id=1704286639 instance=ExtResource("23_card")]
 layout_mode = 2
 character_name = "Киря"
-bio = "Тихий и загадочный. Часто пропадает, но возвращается с чем-то полезным."
+bio = ""
 portrait = ExtResource("25_2u7jv")
 character_id = "kirya"
 dead_portrait = ExtResource("29_kiryadeadp")

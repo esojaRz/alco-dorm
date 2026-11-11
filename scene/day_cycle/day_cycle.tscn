@@ -12,6 +12,39 @@
 [ext_resource type="Texture2D" uid="uid://caclik6re4m6o" path="res://assets/props/cigarete.png" id="10_pcyqy"]
 [ext_resource type="PackedScene" uid="uid://b08r8awatki2u" path="res://scene/day_cycle/supply_page.tscn" id="31_supply"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+content_margin_left = 12.0
+content_margin_top = 5.0
+content_margin_right = 12.0
+content_margin_bottom = 5.0
+bg_color = Color(0.321569, 0.219608, 0.117647, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
+content_margin_left = 12.0
+content_margin_top = 5.0
+content_margin_right = 12.0
+content_margin_bottom = 5.0
+bg_color = Color(0.239216, 0.156863, 0.0784314, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+content_margin_left = 12.0
+content_margin_top = 5.0
+content_margin_right = 12.0
+content_margin_bottom = 5.0
+bg_color = Color(0.431373, 0.301961, 0.160784, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choice"]
 content_margin_left = 6.0
 content_margin_top = 3.0
@@ -98,39 +131,6 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
-content_margin_left = 12.0
-content_margin_top = 5.0
-content_margin_right = 12.0
-content_margin_bottom = 5.0
-bg_color = Color(0.321569, 0.219608, 0.117647, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
-content_margin_left = 12.0
-content_margin_top = 5.0
-content_margin_right = 12.0
-content_margin_bottom = 5.0
-bg_color = Color(0.239216, 0.156863, 0.0784314, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
-content_margin_left = 12.0
-content_margin_top = 5.0
-content_margin_right = 12.0
-content_margin_bottom = 5.0
-bg_color = Color(0.431373, 0.301961, 0.160784, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [node name="DayCyclePage" type="Control" unique_id=1808022866]
 layout_mode = 3
 anchors_preset = 15
@@ -172,192 +172,23 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.45, 0.32, 0.18, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "ЗНАКОМСТВО"
 
 [node name="LastEventText" type="Label" parent="LeftColumn" unique_id=1586545228]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 58)
-custom_maximum_size = Vector2(-1, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.2, 0.14902, 0.0901961, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_constants/line_spacing = 6
+theme_override_font_sizes/font_size = 21
 text = "Первый день."
 autowrap_mode = 3
 
-[node name="Morning" type="VBoxContainer" parent="LeftColumn" unique_id=786145000]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_stretch_ratio = 2.65
-theme_override_constants/separation = 25
-alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="LeftColumn/Morning" unique_id=1502981413]
-layout_mode = 2
-offset_transform_enabled = true
-theme_override_constants/separation = 7
-
-[node name="WhoTitle" type="Label" parent="LeftColumn/Morning/VBoxContainer" unique_id=838093741]
-layout_mode = 2
-offset_transform_enabled = true
-theme_override_colors/font_color = Color(0.156863, 0.109804, 0.0588235, 1)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 20
-text = "КТО ИДЁТ НА ПАРЫ?"
-horizontal_alignment = 1
-
-[node name="WhoButtons" type="HBoxContainer" parent="LeftColumn/Morning/VBoxContainer" unique_id=1048366602]
-layout_mode = 2
-offset_transform_enabled = true
-offset_transform_scale = Vector2(1, 0.9)
-
-[node name="ArturSelect" type="Button" parent="LeftColumn/Morning/VBoxContainer/WhoButtons" unique_id=215698368]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 111)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
-theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
-theme_override_colors/font_hover_color = Color(0.42, 0.27, 0.12, 1)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_choice")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_choice_hover")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_choice_hover_pressed")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_choice_disabled")
-toggle_mode = true
-icon = ExtResource("3_ex2mw")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="VasekSelect" type="Button" parent="LeftColumn/Morning/VBoxContainer/WhoButtons" unique_id=290018572]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(170, 32)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
-theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
-theme_override_colors/font_hover_color = Color(0.42, 0.27, 0.12, 1)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_choice")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_choice_hover")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_choice_hover_pressed")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_choice_disabled")
-toggle_mode = true
-icon = ExtResource("4_oipan")
-
-[node name="KiryaSelect" type="Button" parent="LeftColumn/Morning/VBoxContainer/WhoButtons" unique_id=1887791779]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(170, 32)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
-theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
-theme_override_colors/font_hover_color = Color(0.42, 0.27, 0.12, 1)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_choice")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_choice_hover")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_choice_hover_pressed")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_choice_disabled")
-toggle_mode = true
-icon = ExtResource("5_kdfsb")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="LeftColumn/Morning" unique_id=820750508]
-layout_mode = 2
-
-[node name="ItemsTitle" type="Label" parent="LeftColumn/Morning/VBoxContainer2" unique_id=2076533805]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.156863, 0.109804, 0.0588235, 1)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 20
-text = "ЧТО ВЗЯТЬ С СОБОЙ?"
-horizontal_alignment = 1
-
-[node name="ItemButtons" type="HBoxContainer" parent="LeftColumn/Morning/VBoxContainer2" unique_id=1031526962]
-layout_mode = 2
-theme_override_constants/separation = 45
-alignment = 1
-
-[node name="FoodSelect" type="Button" parent="LeftColumn/Morning/VBoxContainer2/ItemButtons" unique_id=1477532925]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(170, 28)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
-theme_override_colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 15
-theme_override_styles/normal = SubResource("StyleBoxFlat_choice")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_choice_hover")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_choice_hover_pressed")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_choice_disabled")
-toggle_mode = true
-icon = ExtResource("8_qsqhc")
-icon_alignment = 1
-
-[node name="WaterSelect" type="Button" parent="LeftColumn/Morning/VBoxContainer2/ItemButtons" unique_id=1985538902]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(170, 28)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
-theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
-theme_override_colors/font_hover_color = Color(0.42, 0.27, 0.12, 1)
-theme_override_colors/font_disabled_color = Color(0.45, 0.4, 0.35, 0.5)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 15
-theme_override_styles/normal = SubResource("StyleBoxFlat_choice")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_choice_hover")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_choice_hover_pressed")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_choice_disabled")
-toggle_mode = true
-icon = ExtResource("9_bei6l")
-icon_alignment = 1
-
-[node name="MedicineSelect" type="Button" parent="LeftColumn/Morning/VBoxContainer2/ItemButtons" unique_id=1785421379]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(170, 28)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
-theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
-theme_override_colors/font_hover_color = Color(0.42, 0.27, 0.12, 1)
-theme_override_colors/font_disabled_color = Color(0.45, 0.4, 0.35, 0.5)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 15
-theme_override_styles/normal = SubResource("StyleBoxFlat_choice")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_choice_hover")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_choice_hover_pressed")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_choice_disabled")
-toggle_mode = true
-icon = ExtResource("10_pcyqy")
-icon_alignment = 1
-
-[node name="Spacer" type="Control" parent="LeftColumn/Morning" unique_id=946327544]
+[node name="Spacer" type="Control" parent="LeftColumn" unique_id=946327545]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftColumn/Morning" unique_id=1315028669]
-custom_maximum_size = Vector2(600, 200)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_constants/separation = 15
-
-[node name="Hint" type="Label" parent="LeftColumn/Morning/HBoxContainer" unique_id=1620296383]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.45, 0.32, 0.18, 1)
-theme_override_font_sizes/font_size = 13
-text = "Можно отправить никого и без предметов. Взятые с собой вещи повышают шанс находки."
-autowrap_mode = 3
-uppercase = true
-text_direction = 1
 
 [node name="Message" type="Label" parent="LeftColumn" unique_id=400764061]
 unique_name_in_owner = true
@@ -384,18 +215,200 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "ЖДАТЬ ВЕЧЕРА"
 
 [node name="RightColumn" type="VBoxContainer" parent="." unique_id=1925943795]
+custom_minimum_size = Vector2(0, 619)
 layout_mode = 0
 offset_left = 660.0
-offset_top = 100.0
+offset_top = 80.0
 offset_right = 1240.0
 offset_bottom = 700.0
 mouse_filter = 2
 theme_override_constants/separation = 6
 
-[node name="Evening" type="VBoxContainer" parent="RightColumn" unique_id=835651609]
+[node name="Morning" type="VBoxContainer" parent="RightColumn" unique_id=786145000]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 8
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.65
+theme_override_constants/separation = 28
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightColumn/Morning" unique_id=1502981413]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_constants/separation = 7
+
+[node name="Spacer" type="Control" parent="RightColumn/Morning/VBoxContainer" unique_id=1692244927]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="WhoTitle" type="Label" parent="RightColumn/Morning/VBoxContainer" unique_id=838093741]
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_colors/font_color = Color(0.156863, 0.109804, 0.0588235, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 20
+text = "КТО ИДЁТ НА ПАРЫ?"
+horizontal_alignment = 1
+
+[node name="WhoButtons" type="HBoxContainer" parent="RightColumn/Morning/VBoxContainer" unique_id=1048366602]
+layout_mode = 2
+offset_transform_scale = Vector2(1, 0.9)
+theme_override_constants/separation = 26
+alignment = 1
+
+[node name="ArturSelect" type="Button" parent="RightColumn/Morning/VBoxContainer/WhoButtons" unique_id=215698368]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.42, 0.27, 0.12, 1)
+theme_override_constants/icon_max_width = 165
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_choice")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_choice_hover")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_choice_hover_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_choice_disabled")
+toggle_mode = true
+icon = ExtResource("3_ex2mw")
+icon_alignment = 1
+
+[node name="VasekSelect" type="Button" parent="RightColumn/Morning/VBoxContainer/WhoButtons" unique_id=290018572]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.42, 0.27, 0.12, 1)
+theme_override_constants/icon_max_width = 150
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_choice")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_choice_hover")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_choice_hover_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_choice_disabled")
+toggle_mode = true
+icon = ExtResource("4_oipan")
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="KiryaSelect" type="Button" parent="RightColumn/Morning/VBoxContainer/WhoButtons" unique_id=1887791779]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.42, 0.27, 0.12, 1)
+theme_override_constants/icon_max_width = 150
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_choice")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_choice_hover")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_choice_hover_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_choice_disabled")
+toggle_mode = true
+icon = ExtResource("5_kdfsb")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="RightColumn/Morning" unique_id=820750508]
+layout_mode = 2
+
+[node name="ItemsTitle" type="Label" parent="RightColumn/Morning/VBoxContainer2" unique_id=2076533805]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.156863, 0.109804, 0.0588235, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 20
+text = "ЧТО ВЗЯТЬ С СОБОЙ?"
+horizontal_alignment = 1
+
+[node name="ItemButtons" type="HBoxContainer" parent="RightColumn/Morning/VBoxContainer2" unique_id=1031526962]
+layout_mode = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="FoodSelect" type="Button" parent="RightColumn/Morning/VBoxContainer2/ItemButtons" unique_id=1477532925]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_choice")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_choice_hover")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_choice_hover_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_choice_disabled")
+toggle_mode = true
+icon = ExtResource("8_qsqhc")
+icon_alignment = 1
+
+[node name="WaterSelect" type="Button" parent="RightColumn/Morning/VBoxContainer2/ItemButtons" unique_id=1985538902]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.42, 0.27, 0.12, 1)
+theme_override_colors/font_disabled_color = Color(0.45, 0.4, 0.35, 0.5)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_choice")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_choice_hover")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_choice_hover_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_choice_disabled")
+toggle_mode = true
+icon = ExtResource("9_bei6l")
+icon_alignment = 1
+
+[node name="MedicineSelect" type="Button" parent="RightColumn/Morning/VBoxContainer2/ItemButtons" unique_id=1785421379]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.42, 0.27, 0.12, 1)
+theme_override_colors/font_disabled_color = Color(0.45, 0.4, 0.35, 0.5)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_choice")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_choice_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_choice_hover")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_choice_hover_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_choice_disabled")
+toggle_mode = true
+icon = ExtResource("10_pcyqy")
+icon_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RightColumn/Morning" unique_id=1315028669]
+custom_maximum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 15
+
+[node name="Hint" type="Label" parent="RightColumn/Morning/HBoxContainer" unique_id=1620296383]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.32, 0.18, 1)
+theme_override_font_sizes/font_size = 13
+text = "Можно отправить никого и без предметов. Взятые с собой вещи повышают шанс находки."
+autowrap_mode = 3
+uppercase = true
+text_direction = 1
+
+[node name="Evening" type="VBoxContainer" parent="RightColumn" unique_id=835651609]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 2
 
 [node name="EventTitle" type="Label" parent="RightColumn/Evening" unique_id=1997041254]
 unique_name_in_owner = true
@@ -416,7 +429,7 @@ autowrap_mode = 3
 [node name="Choices" type="VBoxContainer" parent="RightColumn/Evening" unique_id=1700000001]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 15
 
 [node name="Choice1" type="Button" parent="RightColumn/Evening/Choices" unique_id=1700000002]
 unique_name_in_owner = true
@@ -429,7 +442,6 @@ theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-text = ""
 
 [node name="Choice2" type="Button" parent="RightColumn/Evening/Choices" unique_id=1700000003]
 unique_name_in_owner = true
@@ -442,7 +454,6 @@ theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-text = ""
 
 [node name="Choice3" type="Button" parent="RightColumn/Evening/Choices" unique_id=1700000004]
 unique_name_in_owner = true
@@ -455,7 +466,6 @@ theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
-text = ""
 
 [node name="Cards" type="VBoxContainer" parent="RightColumn" unique_id=90129070]
 unique_name_in_owner = true
